@@ -4,7 +4,18 @@ class WidgetsController < ActionController::Base
   before_action :set_contact
   before_action :build_contact
 
-  def index; end
+  def show
+    respond_to do |format|
+      format.html { render :show }
+      format.json do
+        render json: {
+          web_widget: @web_widget,
+          token: @token,
+          contact: @contact
+        }
+      end
+    end
+  end
 
   private
 
