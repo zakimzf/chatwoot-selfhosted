@@ -108,3 +108,12 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+@import '~dashboard/assets/scss/variables.scss';
+
+.options-message {
+  width: 100%;
+  max-width: $space-large;
+  min-width: $space-medium;
+}
+</style>

@@ -1,5 +1,7 @@
-@mixin bubble-with-tyes {
-  @include padding($space-smaller $space-one);
+$bubble-v-padding: $space-smaller + $space-micro;
+
+@mixin bubble-with-types {
+  @include padding($bubble-v-padding $space-one);
   @include margin($zero);
   background: $color-primary-light;
   border-radius: $space-small;
@@ -216,7 +218,7 @@
     }
 
     .bubble {
-      @include bubble-with-tyes;
+      @include bubble-with-types;
       max-width: 50rem;
       text-align: left;
       word-wrap: break-word;

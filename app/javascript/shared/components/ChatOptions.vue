@@ -78,6 +78,7 @@ export default {
 
   .options {
     width: 100%;
+    margin: 0;
 
     > li {
       list-style: none;
