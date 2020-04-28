@@ -1,14 +1,7 @@
 <template>
   <div class="home">
     <div class="header-wrap">
-      <ChatHeaderExpanded
-        v-if="isHeaderExpanded"
-        :intro-heading="introHeading"
-        :intro-body="introBody"
-        :avatar-url="channelConfig.avatarUrl"
-      />
       <ChatHeader
-        v-else
         :title="channelConfig.websiteName"
         :avatar-url="channelConfig.avatarUrl"
       />
@@ -29,7 +22,6 @@ import { mapGetters } from 'vuex';
 
 import Branding from 'widget/components/Branding.vue';
 import ChatFooter from 'widget/components/ChatFooter.vue';
-import ChatHeaderExpanded from 'widget/components/ChatHeaderExpanded.vue';
 import ChatHeader from 'widget/components/ChatHeader.vue';
 import ConversationWrap from 'widget/components/ConversationWrap.vue';
 import AvailableAgents from 'widget/components/AvailableAgents.vue';
@@ -38,7 +30,6 @@ export default {
   name: 'Home',
   components: {
     ChatFooter,
-    ChatHeaderExpanded,
     ConversationWrap,
     ChatHeader,
     Branding,
@@ -51,9 +42,6 @@ export default {
       availableAgents: 'agent/availableAgents',
       hasFetched: 'agent/uiFlags/hasFetched',
     }),
-    isHeaderExpanded() {
-      return this.conversationSize === 0;
-    },
     channelConfig() {
       return window.chatwootWebChannel;
     },

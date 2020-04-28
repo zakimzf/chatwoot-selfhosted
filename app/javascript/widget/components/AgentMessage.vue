@@ -106,14 +106,19 @@ export default {
 
       return this.message.sender ? this.message.sender.name : 'Bot';
     },
-    avatarUrl() {
+    botAvatarUrl() {
       // eslint-disable-next-line
       const BotImage = require('dashboard/assets/images/chatwoot_bot.png')
+      return window.chatwootWebChannel.avatarUrl || BotImage;
+    },
+    avatarUrl() {
       if (this.message.message_type === MESSAGE_TYPE.TEMPLATE) {
-        return BotImage;
+        return this.botAvatarUrl;
       }
 
-      return this.message.sender ? this.message.sender.avatar_url : BotImage;
+      return this.message.sender
+        ? this.message.sender.avatar_url
+        : this.botAvatarUrl;
     },
     hasRecordedResponse() {
       return (
