@@ -1,10 +1,7 @@
 <template>
   <div class="column content-box">
-    <button
-      class="button nice icon success button--fixed-right-top"
-      @click="openAddPopup()"
-    >
-      <i class="icon ion-android-add-circle"></i>
+    <button class="button nice icon success button--fixed-right-top" @click="openAddPopup()">
+      <feather class="icon" type="plus-circle"></feather>
       {{ $t('CANNED_MGMT.HEADER_BTN_TXT') }}
     </button>
     <!-- List Canned Response -->
@@ -13,32 +10,19 @@
         <p
           v-if="!uiFlags.fetchingList && !records.length"
           class="no-items-error-message"
-        >
-          {{ $t('CANNED_MGMT.LIST.404') }}
-        </p>
-        <woot-loading-state
-          v-if="uiFlags.fetchingList"
-          :message="$t('CANNED_MGMT.LOADING')"
-        />
+        >{{ $t('CANNED_MGMT.LIST.404') }}</p>
+        <woot-loading-state v-if="uiFlags.fetchingList" :message="$t('CANNED_MGMT.LOADING')" />
 
-        <table
-          v-if="!uiFlags.fetchingList && records.length"
-          class="woot-table"
-        >
+        <table v-if="!uiFlags.fetchingList && records.length" class="woot-table">
           <thead>
             <!-- Header -->
             <th
               v-for="thHeader in $t('CANNED_MGMT.LIST.TABLE_HEADER')"
               :key="thHeader"
-            >
-              {{ thHeader }}
-            </th>
+            >{{ thHeader }}</th>
           </thead>
           <tbody>
-            <tr
-              v-for="(cannedItem, index) in records"
-              :key="cannedItem.short_code"
-            >
+            <tr v-for="(cannedItem, index) in records" :key="cannedItem.short_code">
               <!-- Short Code  -->
               <td>{{ cannedItem.short_code }}</td>
               <!-- Content -->
@@ -46,17 +30,12 @@
               <!-- Action Buttons -->
               <td class="button-wrapper">
                 <div @click="openEditPopup(cannedItem)">
-                  <woot-submit-button
-                    :button-text="$t('CANNED_MGMT.EDIT.BUTTON_TEXT')"
-                    icon-class="ion-edit"
-                    button-class="link hollow grey-btn"
-                  />
+                  <woot-button icon-class="edit" button-class="link hollow grey-btn" />
                 </div>
                 <div @click="openDeletePopup(cannedItem, index)">
-                  <woot-submit-button
-                    :button-text="$t('CANNED_MGMT.DELETE.BUTTON_TEXT')"
+                  <woot-button
                     :loading="loading[cannedItem.id]"
-                    icon-class="ion-close-circled"
+                    icon-class="trash-2"
                     button-class="link hollow grey-btn"
                   />
                 </div>

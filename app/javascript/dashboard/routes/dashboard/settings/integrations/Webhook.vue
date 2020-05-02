@@ -4,7 +4,7 @@
       class="button nice icon success button--fixed-right-top"
       @click="openAddPopup()"
     >
-      <i class="icon ion-android-add-circle"></i>
+      <feather class="icon" type="plus-circle"></feather>
       {{ $t('INTEGRATION_SETTINGS.WEBHOOK.HEADER_BTN_TXT') }}
     </button>
     <div class="row">
@@ -39,12 +39,9 @@
               <td>{{ webHookItem.url }}</td>
               <td class="button-wrapper">
                 <div @click="openDeletePopup(webHookItem, index)">
-                  <woot-submit-button
-                    :button-text="
-                      $t('INTEGRATION_SETTINGS.WEBHOOK.DELETE.BUTTON_TEXT')
-                    "
+                  <woot-button
                     :loading="loading[webHookItem.id]"
-                    icon-class="ion-close-circled"
+                    icon-class="trash-2"
                     button-class="link hollow grey-btn"
                   />
                 </div>

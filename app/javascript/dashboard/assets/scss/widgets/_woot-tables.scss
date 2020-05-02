@@ -1,6 +1,6 @@
 table {
-  font-size: $font-size-small;
   border-spacing: 0;
+  font-size: $font-size-small;
 
   thead {
     th {
@@ -10,9 +10,16 @@ table {
   }
 
   tbody {
+    tr {
+      border-bottom: 1px solid $color-border-light;
+
+      &:last-child {
+        border-bottom: 0;
+      }
+    }
+
     td {
       @include padding($space-one $space-small);
-      border-bottom: 1px solid $color-border-light;
     }
   }
 }
@@ -44,9 +51,8 @@ table {
   }
 
   .button-wrapper {
-    min-width: 20rem;
     @include flex;
-    @include flex-align(left, null);
+    @include flex-align(right, null);
     flex-direction: row;
   }
 

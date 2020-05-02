@@ -10,7 +10,7 @@ export default {
       component: SettingsContent,
       props: {
         headerTitle: 'BILLING.HEADER',
-        icon: 'ion-card',
+        icon: 'credit-card',
       },
       children: [
         {

@@ -16,6 +16,7 @@ import Vuelidate from 'vuelidate';
 import VTooltip from 'v-tooltip';
 import VueHighlightJS from 'vue-highlight.js';
 import javascript from 'highlight.js/lib/languages/javascript';
+import VueFeather from 'vue-feather';
 
 import WootUiKit from '../dashboard/components';
 import App from '../dashboard/App';
@@ -39,6 +40,7 @@ Vue.use(VueHighlightJS, {
     javascript,
   },
 });
+Vue.use(VueFeather);
 
 Vue.component('multiselect', Multiselect);
 Vue.component('woot-switch', WootSwitch);

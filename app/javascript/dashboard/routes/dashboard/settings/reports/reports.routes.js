@@ -10,7 +10,7 @@ export default {
       props: {
         headerTitle: 'REPORT.HEADER',
         headerButtonText: 'REPORT.HEADER_BTN_TXT',
-        icon: 'ion-arrow-graph-up-right',
+        icon: 'trending-up',
       },
       children: [
         {

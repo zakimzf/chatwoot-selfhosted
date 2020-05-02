@@ -41,6 +41,7 @@ export default {
   text-align: left;
 
   .button--copy-code {
+    border-radius: 0;
     margin-top: 0;
     position: absolute;
     right: 0;

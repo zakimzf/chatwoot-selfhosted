@@ -18,7 +18,7 @@ export default {
     ],
     menuItems: {
       assignedToMe: {
-        icon: 'ion-chatbox-working',
+        icon: 'message-circle',
         label: 'CONVERSATIONS',
         hasSubMenu: false,
         key: '',
@@ -27,14 +27,14 @@ export default {
         toStateName: 'home',
       },
       report: {
-        icon: 'ion-arrow-graph-up-right',
+        icon: 'trending-up',
         label: 'REPORTS',
         hasSubMenu: false,
         toState: frontendURL(`accounts/${accountId}/reports`),
         toStateName: 'settings_account_reports',
       },
       settings: {
-        icon: 'ion-settings',
+        icon: 'sliders',
         label: 'SETTINGS',
         hasSubMenu: false,
         toState: frontendURL(`accounts/${accountId}/settings`),
@@ -63,28 +63,28 @@ export default {
     ],
     menuItems: {
       back: {
-        icon: 'ion-ios-arrow-back',
+        icon: 'chevron-left',
         label: 'HOME',
         hasSubMenu: false,
         toStateName: 'home',
         toState: frontendURL(`accounts/${accountId}/dashboard`),
       },
       agents: {
-        icon: 'ion-person-stalker',
+        icon: 'users',
         label: 'AGENTS',
         hasSubMenu: false,
         toState: frontendURL(`accounts/${accountId}/settings/agents/list`),
         toStateName: 'agent_list',
       },
       inboxes: {
-        icon: 'ion-archive',
+        icon: 'inbox',
         label: 'INBOXES',
         hasSubMenu: false,
         toState: frontendURL(`accounts/${accountId}/settings/inboxes/list`),
         toStateName: 'settings_inbox_list',
       },
       cannedResponses: {
-        icon: 'ion-chatbox-working',
+        icon: 'save',
         label: 'CANNED_RESPONSES',
         hasSubMenu: false,
         toState: frontendURL(
@@ -93,21 +93,21 @@ export default {
         toStateName: 'canned_list',
       },
       billing: {
-        icon: 'ion-card',
+        icon: 'credit-card',
         label: 'BILLING',
         hasSubMenu: false,
         toState: frontendURL(`accounts/${accountId}/settings/billing`),
         toStateName: 'billing',
       },
       settings_integrations: {
-        icon: 'ion-flash',
+        icon: 'zap',
         label: 'INTEGRATIONS',
         hasSubMenu: false,
         toState: frontendURL(`accounts/${accountId}/settings/integrations`),
         toStateName: 'settings_integrations',
       },
       general_settings: {
-        icon: 'ion-gear-a',
+        icon: 'settings',
         label: 'ACCOUNT_SETTINGS',
         hasSubMenu: false,
         toState: frontendURL(`accounts/${accountId}/settings/general`),

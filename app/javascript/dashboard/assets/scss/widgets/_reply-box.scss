@@ -6,6 +6,11 @@
   max-height: $space-jumbo * 2;
   transition: height 2s $ease-in-out-cubic;
 
+  .feather {
+    height: 20px;
+    width: 20px;
+  }
+
   .reply-box__top {
     @include flex;
     @include flex-align($x: left, $y: middle);
@@ -50,12 +55,15 @@
     .icon {
       color: $medium-gray;
       cursor: pointer;
-      font-size: $font-size-medium;
-      margin-right: $space-small;
 
       &.active {
         color: $color-woot;
       }
+    }
+
+    .file-uploads {
+      align-items: center;
+      display: flex;
     }
 
     .file-uploads>label {
@@ -65,15 +73,12 @@
     .attachment {
       cursor: pointer;
       margin-right: $space-one;
-      padding: 0 $space-small;
     }
 
     >textarea {
       @include ghost-input();
       @include margin(0);
       background: transparent;
-      // Override min-height : 50px in foundation
-      //
       min-height: 1rem;
       resize: none;
     }
@@ -146,7 +151,11 @@
     }
 
     .send-button {
+      border-bottom-left-radius: 0;
       border-bottom-right-radius: $space-small;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+
       height: 3.6rem;
       padding-left: $space-two;
       padding-right: $space-two;

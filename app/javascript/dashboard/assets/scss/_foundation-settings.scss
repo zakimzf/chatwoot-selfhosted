@@ -48,11 +48,13 @@
 $global-font-size: 10px;
 $global-width: 100%;
 $global-lineheight: 1.5;
-$foundation-palette: (primary: $color-woot,
+$foundation-palette: (
+  primary: $color-woot,
   secondary: #35c5ff,
-  success: #44ce4b,
+  success: #2ecc71,
   warning: #ffc532,
-  alert: #ff382d);
+  alert: #ff382d
+);
 $light-gray: #c0ccda;
 $medium-gray: #8492a6;
 $dark-gray: $color-gray;
@@ -60,21 +62,13 @@ $black: #000;
 $white: #fff;
 $body-background: $white;
 $body-font-color: $color-body;
-$body-font-family: 'Inter',
--apple-system,
-system-ui,
-BlinkMacSystemFont,
-"Segoe UI",
-Roboto,
-"Helvetica Neue",
-Arial,
-sans-serif;
+$body-font-family: 'Inter', -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 $body-antialiased: true;
 $global-margin: $space-one;
 $global-padding: $space-one;
 $global-weight-normal: normal;
 $global-weight-bold: bold;
-$global-radius: 0;
+$global-radius: $space-smaller;
 $global-text-direction: ltr;
 $global-flexbox: false;
 $print-transparent-backgrounds: true;

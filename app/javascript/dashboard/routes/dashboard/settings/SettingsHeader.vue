@@ -3,7 +3,7 @@
     <h1 class="page-title">
       <woot-sidemenu-icon></woot-sidemenu-icon>
       <back-button v-if="showBackButton"></back-button>
-      <i :class="iconClass"></i>
+      <feather :type="icon" class="icon header--icon" />
       <span>{{ headerTitle }}</span>
     </h1>
     <router-link
@@ -11,7 +11,7 @@
       :to="buttonRoute"
       class="button icon success nice button--fixed-right-top"
     >
-      <i class="icon ion-android-add-circle"></i>
+      <feather class="icon" type="plus-circle"></feather>
       {{ buttonText }}
     </router-link>
   </div>
@@ -48,9 +48,6 @@ export default {
     ...mapGetters({
       currentUser: 'getCurrentUser',
     }),
-    iconClass() {
-      return `icon ${this.icon} header--icon`;
-    },
     isAdmin() {
       const { role } = this.currentUser;
       return role === 'administrator';

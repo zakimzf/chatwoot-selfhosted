@@ -13,12 +13,13 @@
       :title="menuItem.toolTip"
     >
       <div class="wrap">
-        <i :class="menuItem.icon" />
+        <feather :type="menuItem.icon" class="feather-icon"></feather>
         {{ $t(`SIDEBAR.${menuItem.label}`) }}
       </div>
-      <span
+      <feather
         v-if="showItem(menuItem)"
-        class="child-icon ion-android-add-circle"
+        type="plus-circle"
+        class="child-icon"
         @click.prevent="newLinkClick"
       />
     </a>
@@ -31,12 +32,13 @@
         :to="child.toState"
       >
         <a href="#">
-          <div class="wrap">
-            <i
+          <div class="wrap inbox-list-item">
+            <feather
               v-if="computedInboxClass(child)"
               class="inbox-icon"
-              :class="computedInboxClass(child)"
-            ></i>
+              :type="computedInboxClass(child)"
+            >
+            </feather>
             {{ child.label }}
           </div>
         </a>
@@ -51,6 +53,7 @@ import { mapGetters } from 'vuex';
 
 import router from '../../routes';
 import auth from '../../api/auth';
+const feather = require('feather-icons');
 
 const INBOX_TYPES = {
   WEB: 'Channel::WebWidget',
@@ -61,16 +64,16 @@ const INBOX_TYPES = {
 const getInboxClassByType = type => {
   switch (type) {
     case INBOX_TYPES.WEB:
-      return 'ion-earth';
+      return 'globe';
 
     case INBOX_TYPES.FB:
-      return 'ion-social-facebook';
+      return 'facebook';
 
     case INBOX_TYPES.TWITTER:
-      return 'ion-social-twitter';
+      return 'twitter';
 
     case INBOX_TYPES.TWILIO:
-      return 'ion-android-textsms';
+      return 'smartphone';
 
     default:
       return '';
@@ -109,6 +112,9 @@ export default {
       return ' ';
     },
   },
+  mounted() {
+    feather.replace();
+  },
   methods: {
     computedInboxClass(child) {
       const { type } = child;
@@ -128,5 +134,16 @@ export default {
 .sub-menu-title {
   display: flex;
   justify-content: space-between;
+}
+
+.wrap {
+  display: flex;
+  align-items: center;
+}
+
+.inbox-list-item {
+  i.feather {
+    min-width: 2rem;
+  }
 }
 </style>

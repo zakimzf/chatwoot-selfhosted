@@ -6,7 +6,7 @@
       transition="modal"
       @click="onBackDropClick"
     >
-      <i class="ion-android-close modal--close" @click="close"></i>
+      <feather class="modal--close" type="x" @click="close" />
       <div class="modal-container" :class="className" @click.stop>
         <slot />
       </div>

@@ -9,7 +9,7 @@ import Modal from './Modal';
 import ModalHeader from './ModalHeader';
 import ReportStatsCard from './widgets/ReportStatsCard';
 import SidemenuIcon from './SidemenuIcon';
-import SubmitButton from './buttons/FormSubmitButton';
+import Button from './buttons/Button';
 import Tabs from './ui/Tabs/Tabs';
 import TabsItem from './ui/Tabs/TabsItem';
 
@@ -22,7 +22,7 @@ const WootUIKit = {
   ReportStatsCard,
   SidemenuIcon,
   Spinner,
-  SubmitButton,
+  Button,
   Tabs,
   TabsItem,
   install(Vue) {

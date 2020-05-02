@@ -32,7 +32,7 @@
         </div>
         <div class="modal-footer">
           <div class="medium-12 columns">
-            <woot-submit-button
+            <woot-button
               :disabled="
                 $v.content.$invalid ||
                   $v.shortCode.$invalid ||
@@ -53,15 +53,12 @@
 /* global bus */
 /* eslint no-console: 0 */
 import { required, minLength } from 'vuelidate/lib/validators';
-
-import WootSubmitButton from '../../../../components/buttons/FormSubmitButton';
 import Modal from '../../../../components/Modal';
 
 const cannedImg = require('assets/images/canned.svg');
 
 export default {
   components: {
-    WootSubmitButton,
     Modal,
   },
   props: ['onClose'],

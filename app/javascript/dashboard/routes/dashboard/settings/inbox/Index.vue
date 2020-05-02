@@ -8,9 +8,7 @@
           <router-link
             v-if="isAdmin()"
             :to="addAccountScoping('settings/inboxes/new')"
-          >
-            {{ $t('SETTINGS.INBOXES.NEW_INBOX') }}
-          </router-link>
+          >{{ $t('SETTINGS.INBOXES.NEW_INBOX') }}</router-link>
         </p>
 
         <table v-if="inboxesList.length" class="woot-table">
@@ -33,39 +31,29 @@
               <!-- Short Code  -->
               <td>
                 <span class="agent-name">{{ item.name }}</span>
-                <span v-if="item.channel_type === 'Channel::FacebookPage'">
-                  Facebook
-                </span>
-                <span v-if="item.channel_type === 'Channel::WebWidget'">
-                  Website
-                </span>
-                <span v-if="item.channel_type === 'Channel::TwitterProfile'">
-                  Twitter
-                </span>
-                <span v-if="item.channel_type === 'Channel::TwilioSms'">
-                  Twilio SMS
-                </span>
+                <span v-if="item.channel_type === 'Channel::FacebookPage'">Facebook</span>
+                <span v-if="item.channel_type === 'Channel::WebWidget'">Website</span>
+                <span v-if="item.channel_type === 'Channel::TwitterProfile'">Twitter</span>
+                <span v-if="item.channel_type === 'Channel::TwilioSms'">Twilio SMS</span>
               </td>
 
               <!-- Action Buttons -->
               <td>
                 <div class="button-wrapper">
-                  <router-link
-                    :to="addAccountScoping(`settings/inboxes/${item.id}`)"
-                  >
-                    <woot-submit-button
+                  <router-link :to="addAccountScoping(`settings/inboxes/${item.id}`)">
+                    <woot-button
                       v-if="isAdmin()"
                       :button-text="$t('INBOX_MGMT.SETTINGS')"
-                      icon-class="ion-gear-b"
+                      icon-class="edit"
                       button-class="link hollow grey-btn"
                     />
                   </router-link>
 
-                  <woot-submit-button
+                  <woot-button
                     v-if="isAdmin()"
                     :button-text="$t('INBOX_MGMT.DELETE.BUTTON_TEXT')"
                     :loading="loading[item.id]"
-                    icon-class="ion-close-circled"
+                    icon-class="trash-2"
                     button-class="link hollow grey-btn"
                     @click="openDelete(item)"
                   />

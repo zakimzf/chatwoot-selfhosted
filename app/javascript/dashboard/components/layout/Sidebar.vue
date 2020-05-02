@@ -48,9 +48,9 @@
               </router-link>
             </li>
             <li>
-              <a href="#" @click.prevent="logout()">
-                {{ $t('SIDEBAR_ITEMS.LOGOUT') }}
-              </a>
+              <a href="#" @click.prevent="logout()">{{
+                $t('SIDEBAR_ITEMS.LOGOUT')
+              }}</a>
             </li>
           </ul>
         </div>
@@ -65,8 +65,9 @@
             {{ currentUser.role }}
           </h5>
         </div>
-        <span class="current-user--options icon ion-android-more-vertical">
-        </span>
+        <span
+          class="current-user--options icon ion-android-more-vertical"
+        ></span>
       </div>
     </div>
   </aside>
@@ -138,7 +139,7 @@ export default {
     },
     inboxSection() {
       return {
-        icon: 'ion-folder',
+        icon: 'hash',
         label: 'INBOXES',
         hasSubMenu: true,
         newLink: true,

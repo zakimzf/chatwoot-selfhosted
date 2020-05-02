@@ -3,7 +3,7 @@
     <div class="login-init full-height text-center">
       <form method="POST" action="/twitter/authorization">
         <input type="hidden" name="user_id" :value="currentUserID" />
-        <woot-submit-button
+        <woot-button
           icon-class="ion-social-twitter"
           button-text="Sign in with Twitter"
           type="submit"

@@ -29,14 +29,16 @@
         accept="jpg,jpeg,png,mp3,ogg,amr,pdf,mp4"
         @input-file="onFileUpload"
       >
-        <i
+        <feather
           v-if="!isUploading.image"
-          class="icon ion-android-attach attachment"
+          class="icon attachment"
+          type="paperclip"
         />
         <woot-spinner v-if="isUploading.image" />
       </file-upload>
-      <i
-        class="icon ion-happy-outline"
+      <feather
+        class="icon"
+        type="smile"
         :class="{ active: showEmojiPicker }"
         @click="toggleEmojiPicker()"
       />
@@ -71,13 +73,7 @@
         @click="sendMessage"
       >
         {{ replyButtonLabel }}
-        <i
-          class="icon"
-          :class="{
-            'ion-android-send': !isPrivate,
-            'ion-android-lock': isPrivate,
-          }"
-        />
+        <feather class="icon" :type="!isPrivate ? 'send' : 'lock'" />
       </button>
     </div>
   </div>

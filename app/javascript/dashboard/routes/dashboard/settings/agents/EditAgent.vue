@@ -33,7 +33,7 @@
         </div>
         <div class="medium-12 modal-footer">
           <div class="medium-6 columns">
-            <woot-submit-button
+            <woot-button
               :disabled="
                 $v.agentType.$invalid ||
                   $v.agentName.$invalid ||
@@ -47,10 +47,10 @@
             </a>
           </div>
           <div class="medium-6 columns text-right">
-            <a @click="resetPassword">
-              <i class="ion-locked"></i>
+            <woot-button type="button" class="clear" @click="resetPassword">
+              <feather type="lock" />
               {{ $t('AGENT_MGMT.EDIT.PASSWORD_RESET.ADMIN_RESET_BUTTON') }}
-            </a>
+            </woot-button>
           </div>
         </div>
       </form>
@@ -63,13 +63,11 @@
 /* eslint no-console: 0 */
 import { required, minLength } from 'vuelidate/lib/validators';
 import { mapGetters } from 'vuex';
-import WootSubmitButton from '../../../../components/buttons/FormSubmitButton';
 import Modal from '../../../../components/Modal';
 import Auth from '../../../../api/auth';
 
 export default {
   components: {
-    WootSubmitButton,
     Modal,
   },
   props: {

@@ -32,9 +32,10 @@
               :close-on-select="true"
               @select="setPageName"
             />
-            <span v-if="$v.agentType.$error" class="message">
-              {{ $t('AGENT_MGMT.ADD.FORM.AGENT_TYPE.ERROR') }}
-            </span>
+            <span
+              v-if="$v.agentType.$error"
+              class="message"
+            >{{ $t('AGENT_MGMT.ADD.FORM.AGENT_TYPE.ERROR') }}</span>
           </label>
         </div>
         <div class="medium-12 columns">
@@ -50,7 +51,7 @@
         </div>
         <div class="modal-footer">
           <div class="medium-12 columns">
-            <woot-submit-button
+            <woot-button
               :disabled="
                 $v.agentEmail.$invalid ||
                   $v.agentName.$invalid ||

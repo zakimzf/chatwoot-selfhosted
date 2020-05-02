@@ -31,9 +31,15 @@
 
       .wrap,
       .child-icon {
+
         &:hover {
           color: $color-woot;
         }
+      }
+
+      .child-icon {
+        height: 20px;
+        width: 16px;
       }
     }
 
@@ -164,11 +170,18 @@
   }
 }
 
-.header--icon {
+.header--icon.feather {
   display: block;
-  margin-right: $space-normal;
+  height: $space-medium;
+  margin-right: $space-one;
+  width: $space-medium;
 
   @media screen and (max-width: 1200px) {
     display: none;
   }
+}
+
+.feather {
+  height: 20px;
+  width: 16px;
 }

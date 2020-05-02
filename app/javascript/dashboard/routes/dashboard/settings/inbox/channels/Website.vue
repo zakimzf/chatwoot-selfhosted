@@ -7,13 +7,8 @@
     <woot-loading-state
       v-if="uiFlags.isCreating"
       :message="$('INBOX_MGMT.ADD.WEBSITE_CHANNEL.LOADING_MESSAGE')"
-    >
-    </woot-loading-state>
-    <form
-      v-if="!uiFlags.isCreating"
-      class="row"
-      @submit.prevent="createChannel()"
-    >
+    ></woot-loading-state>
+    <form v-if="!uiFlags.isCreating" class="row" @submit.prevent="createChannel()">
       <div class="medium-12 columns">
         <label>
           {{ $t('INBOX_MGMT.ADD.WEBSITE_CHANNEL.CHANNEL_NAME.LABEL') }}
@@ -55,7 +50,7 @@
       <div class="medium-12 columns">
         <label>
           {{
-            $t('INBOX_MGMT.ADD.WEBSITE_CHANNEL.CHANNEL_WELCOME_TAGLINE.LABEL')
+          $t('INBOX_MGMT.ADD.WEBSITE_CHANNEL.CHANNEL_WELCOME_TAGLINE.LABEL')
           }}
           <input
             v-model.trim="channelWelcomeTagline"
@@ -71,9 +66,9 @@
       <div class="medium-12 columns">
         <label>
           {{
-            $t(
-              'INBOX_MGMT.ADD.WEBSITE_CHANNEL.CHANNEL_AGENT_AWAY_MESSAGE.LABEL'
-            )
+          $t(
+          'INBOX_MGMT.ADD.WEBSITE_CHANNEL.CHANNEL_AGENT_AWAY_MESSAGE.LABEL'
+          )
           }}
           <input
             v-model.trim="channelAgentAwayMessage"
@@ -90,16 +85,13 @@
       <div class="medium-12 columns">
         <label>
           {{ $t('INBOX_MGMT.ADD.WEBSITE_CHANNEL.WIDGET_COLOR.LABEL') }}
-          <compact
-            v-model="channelWidgetColor"
-            class="widget-color--selector"
-          />
+          <compact v-model="channelWidgetColor" class="widget-color--selector" />
         </label>
       </div>
 
       <div class="modal-footer">
         <div class="medium-12 columns">
-          <woot-submit-button
+          <woot-button
             :loading="uiFlags.isCreating"
             :disabled="!channelWebsiteUrl || !inboxName"
             :button-text="$t('INBOX_MGMT.ADD.WEBSITE_CHANNEL.SUBMIT_BUTTON')"

@@ -63,13 +63,12 @@ export default {
         if (value.category !== 'modifier') {
           if (!emojiArr[value.category]) emojiArr[value.category] = {};
           const match = key.match(/(.*?)_tone(.*?)$/);
-
           if (match) {
             // this check is to stop the plugin from failing in the case that the
             // emoji strategy miscategorizes tones - which was the case here:
-            const unmodifiedEmojiExists = !!emojiArr[value.category][match[1]];
+            const unmodifiedEmojiExists = !!emojiArr[value.category][match[0]];
             if (unmodifiedEmojiExists) {
-              emojiArr[value.category][match[1]][match[2]] = value;
+              emojiArr[value.category][match[0]][match[2]] = value;
             }
           } else {
             emojiArr[value.category][key] = [value];

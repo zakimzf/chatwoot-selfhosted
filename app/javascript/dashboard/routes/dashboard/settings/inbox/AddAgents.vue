@@ -22,18 +22,15 @@
               :hide-selected="true"
               placeholder="Pick some"
               @select="$v.selectedAgents.$touch"
-            >
-            </multiselect>
-            <span v-if="$v.selectedAgents.$error" class="message">
-              Add atleast one agent to your new Inbox
-            </span>
+            ></multiselect>
+            <span
+              v-if="$v.selectedAgents.$error"
+              class="message"
+            >Add atleast one agent to your new Inbox</span>
           </label>
         </div>
         <div class="medium-12 columns">
-          <woot-submit-button
-            :button-text="$t('INBOX_MGMT.AGENTS.BUTTON_TEXT')"
-            :loading="isCreating"
-          />
+          <woot-button :button-text="$t('INBOX_MGMT.AGENTS.BUTTON_TEXT')" :loading="isCreating" />
         </div>
       </div>
     </form>

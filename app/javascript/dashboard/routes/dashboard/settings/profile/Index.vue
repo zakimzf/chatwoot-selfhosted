@@ -1,24 +1,16 @@
 <template>
-  <div class="columns profile--settings ">
+  <div class="columns profile--settings">
     <form @submit.prevent="updateUser">
       <div class="small-12 row profile--settings--row">
-        <div class="columns small-3 ">
-          <h4 class="block-title">
-            {{ $t('PROFILE_SETTINGS.FORM.PROFILE_SECTION.TITLE') }}
-          </h4>
+        <div class="columns small-3">
+          <h4 class="block-title">{{ $t('PROFILE_SETTINGS.FORM.PROFILE_SECTION.TITLE') }}</h4>
           <p>{{ $t('PROFILE_SETTINGS.FORM.PROFILE_SECTION.NOTE') }}</p>
         </div>
         <div class="columns small-9 medium-5">
           <label>
             {{ $t('PROFILE_SETTINGS.FORM.PROFILE_IMAGE.LABEL') }}
             <thumbnail size="80px" :src="avatarUrl"></thumbnail>
-            <input
-              id="file"
-              ref="file"
-              type="file"
-              accept="image/*"
-              @change="handleImageUpload"
-            />
+            <input id="file" ref="file" type="file" accept="image/*" @change="handleImageUpload" />
           </label>
           <label :class="{ error: $v.name.$error }">
             {{ $t('PROFILE_SETTINGS.FORM.NAME.LABEL') }}
@@ -28,9 +20,7 @@
               :placeholder="$t('PROFILE_SETTINGS.FORM.NAME.PLACEHOLDER')"
               @input="$v.name.$touch"
             />
-            <span v-if="$v.name.$error" class="message">
-              {{ $t('PROFILE_SETTINGS.FORM.NAME.ERROR') }}
-            </span>
+            <span v-if="$v.name.$error" class="message">{{ $t('PROFILE_SETTINGS.FORM.NAME.ERROR') }}</span>
           </label>
           <label :class="{ error: $v.email.$error }">
             {{ $t('PROFILE_SETTINGS.FORM.EMAIL.LABEL') }}
@@ -40,17 +30,16 @@
               :placeholder="$t('PROFILE_SETTINGS.FORM.EMAIL.PLACEHOLDER')"
               @input="$v.email.$touch"
             />
-            <span v-if="$v.email.$error" class="message">
-              {{ $t('PROFILE_SETTINGS.FORM.EMAIL.ERROR') }}
-            </span>
+            <span
+              v-if="$v.email.$error"
+              class="message"
+            >{{ $t('PROFILE_SETTINGS.FORM.EMAIL.ERROR') }}</span>
           </label>
         </div>
       </div>
       <div class="profile--settings--row row">
-        <div class="columns small-3 ">
-          <h4 class="block-title">
-            {{ $t('PROFILE_SETTINGS.FORM.PASSWORD_SECTION.TITLE') }}
-          </h4>
+        <div class="columns small-3">
+          <h4 class="block-title">{{ $t('PROFILE_SETTINGS.FORM.PASSWORD_SECTION.TITLE') }}</h4>
           <p>{{ $t('PROFILE_SETTINGS.FORM.PASSWORD_SECTION.NOTE') }}</p>
         </div>
         <div class="columns small-9 medium-5">
@@ -62,9 +51,10 @@
               :placeholder="$t('PROFILE_SETTINGS.FORM.PASSWORD.PLACEHOLDER')"
               @input="$v.password.$touch"
             />
-            <span v-if="$v.password.$error" class="message">
-              {{ $t('PROFILE_SETTINGS.FORM.PASSWORD.ERROR') }}
-            </span>
+            <span
+              v-if="$v.password.$error"
+              class="message"
+            >{{ $t('PROFILE_SETTINGS.FORM.PASSWORD.ERROR') }}</span>
           </label>
           <label :class="{ error: $v.passwordConfirmation.$error }">
             {{ $t('PROFILE_SETTINGS.FORM.PASSWORD_CONFIRMATION.LABEL') }}
@@ -76,30 +66,28 @@
               "
               @input="$v.passwordConfirmation.$touch"
             />
-            <span v-if="$v.passwordConfirmation.$error" class="message">
-              {{ $t('PROFILE_SETTINGS.FORM.PASSWORD_CONFIRMATION.ERROR') }}
-            </span>
+            <span
+              v-if="$v.passwordConfirmation.$error"
+              class="message"
+            >{{ $t('PROFILE_SETTINGS.FORM.PASSWORD_CONFIRMATION.ERROR') }}</span>
           </label>
         </div>
       </div>
       <email-notifications />
       <div class="profile--settings--row row">
-        <div class="columns small-3 ">
-          <h4 class="block-title">
-            {{ $t('PROFILE_SETTINGS.FORM.ACCESS_TOKEN.TITLE') }}
-          </h4>
+        <div class="columns small-3">
+          <h4 class="block-title">{{ $t('PROFILE_SETTINGS.FORM.ACCESS_TOKEN.TITLE') }}</h4>
           <p>{{ $t('PROFILE_SETTINGS.FORM.ACCESS_TOKEN.NOTE') }}</p>
         </div>
         <div class="columns small-9 medium-5">
           <woot-code :script="currentUser.access_token"></woot-code>
         </div>
       </div>
-      <woot-submit-button
+      <woot-button
         class="button nice success button--fixed-right-top"
         :button-text="$t('PROFILE_SETTINGS.BTN_TEXT')"
         :loading="isUpdating"
-      >
-      </woot-submit-button>
+      ></woot-button>
     </form>
   </div>
 </template>

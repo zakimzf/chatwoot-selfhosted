@@ -14,9 +14,11 @@
             :placeholder="$t('INBOX_MGMT.ADD.TWILIO.CHANNEL_NAME.PLACEHOLDER')"
             @blur="$v.channelName.$touch"
           />
-          <span v-if="$v.channelName.$error" class="message">{{
+          <span v-if="$v.channelName.$error" class="message">
+            {{
             $t('INBOX_MGMT.ADD.TWILIO.CHANNEL_NAME.ERROR')
-          }}</span>
+            }}
+          </span>
         </label>
       </div>
 
@@ -27,9 +29,11 @@
             <option value="sms">SMS</option>
             <option value="whatsapp">Whatsapp</option>
           </select>
-          <span v-if="$v.medium.$error" class="message">{{
+          <span v-if="$v.medium.$error" class="message">
+            {{
             $t('INBOX_MGMT.ADD.TWILIO.CHANNEL_TYPE.ERROR')
-          }}</span>
+            }}
+          </span>
         </label>
       </div>
 
@@ -42,9 +46,11 @@
             :placeholder="$t('INBOX_MGMT.ADD.TWILIO.PHONE_NUMBER.PLACEHOLDER')"
             @blur="$v.phoneNumber.$touch"
           />
-          <span v-if="$v.phoneNumber.$error" class="message">{{
+          <span v-if="$v.phoneNumber.$error" class="message">
+            {{
             $t('INBOX_MGMT.ADD.TWILIO.PHONE_NUMBER.ERROR')
-          }}</span>
+            }}
+          </span>
         </label>
       </div>
 
@@ -57,9 +63,11 @@
             :placeholder="$t('INBOX_MGMT.ADD.TWILIO.ACCOUNT_SID.PLACEHOLDER')"
             @blur="$v.accountSID.$touch"
           />
-          <span v-if="$v.accountSID.$error" class="message">{{
+          <span v-if="$v.accountSID.$error" class="message">
+            {{
             $t('INBOX_MGMT.ADD.TWILIO.ACCOUNT_SID.ERROR')
-          }}</span>
+            }}
+          </span>
         </label>
       </div>
       <div class="medium-8 columns">
@@ -71,14 +79,16 @@
             :placeholder="$t('INBOX_MGMT.ADD.TWILIO.AUTH_TOKEN.PLACEHOLDER')"
             @blur="$v.authToken.$touch"
           />
-          <span v-if="$v.authToken.$error" class="message">{{
+          <span v-if="$v.authToken.$error" class="message">
+            {{
             $t('INBOX_MGMT.ADD.TWILIO.AUTH_TOKEN.ERROR')
-          }}</span>
+            }}
+          </span>
         </label>
       </div>
 
       <div class="medium-12 columns">
-        <woot-submit-button
+        <woot-button
           :loading="uiFlags.isCreating"
           :button-text="$t('INBOX_MGMT.ADD.TWILIO.SUBMIT_BUTTON')"
         />

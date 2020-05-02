@@ -20,7 +20,8 @@
       </div>
     </div>
     <div class="flex-container">
-      <div class="multiselect-box ion-headphone">
+      <div class="multiselect-box">
+        <feather type="headphones" />
         <multiselect
           v-model="currentChat.meta.assignee"
           :options="agentList"

@@ -11,20 +11,15 @@
   z-index: 9990;
 }
 
-.modal--close {
+.modal--close.feather {
   border-radius: 50%;
   color: $color-heading;
   cursor: pointer;
-  font-size: $font-size-big;
-  line-height: $space-normal;
-  padding: $space-normal $space-two;
+  height: $space-medium;
   position: absolute;
   right: $space-large;
   top: $space-large;
-
-  &:hover {
-    background: $color-background;
-  }
+  width: $space-medium;
 }
 
 

@@ -1,15 +1,9 @@
 .button {
-  &.icon {
-    padding-left: $space-normal;
-    padding-right: $space-normal;
+  align-items: center;
+  display: flex;
 
-    i {
-      padding-right: $space-small;
-    }
-  }
-
-  &.nice {
-    border-radius: $space-smaller;
+  .feather {
+    margin-right: $space-small;
   }
 
   &.hollow {
@@ -39,6 +33,8 @@
 }
 
 .button--fixed-right-top {
+  align-items: center;
+  display: flex;
   position: fixed;
   right: $space-small;
   top: $space-small;

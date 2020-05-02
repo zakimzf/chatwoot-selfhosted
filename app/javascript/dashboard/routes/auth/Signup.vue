@@ -1,27 +1,31 @@
 <template>
   <div class="medium-10 column signup">
     <div class="text-center medium-12 signup--hero">
-      <img
-        src="~dashboard/assets/images/woot-logo.svg"
-        alt="Woot-logo"
-        class="hero--logo"
-      />
-      <h2 class="hero--title">
-        {{ $t('REGISTER.TRY_WOOT') }}
-      </h2>
+      <img src="~dashboard/assets/images/woot-logo.svg" alt="Woot-logo" class="hero--logo" />
+      <h2 class="hero--title">{{ $t('REGISTER.TRY_WOOT') }}</h2>
     </div>
     <div class="row align-center">
       <div class="medium-5 column">
         <ul class="signup--features">
-          <li><i class="ion-beer beer"></i>Unlimited Facebook Pages</li>
-          <li><i class="ion-stats-bars report"></i>Robust Reporting</li>
-          <li><i class="ion-chatbox-working canned"></i>Canned Responses</li>
-          <li><i class="ion-loop uptime"></i>Auto Assignment</li>
-          <li><i class="ion-locked secure"></i>Enterprise level security</li>
+          <li>
+            <i class="ion-beer beer"></i>Unlimited Facebook Pages
+          </li>
+          <li>
+            <i class="ion-stats-bars report"></i>Robust Reporting
+          </li>
+          <li>
+            <i class="ion-chatbox-working canned"></i>Canned Responses
+          </li>
+          <li>
+            <i class="ion-loop uptime"></i>Auto Assignment
+          </li>
+          <li>
+            <i class="ion-locked secure"></i>Enterprise level security
+          </li>
         </ul>
       </div>
       <div class="medium-5 column">
-        <form class="signup--box login-box " @submit.prevent="submit()">
+        <form class="signup--box login-box" @submit.prevent="submit()">
           <div class="column log-in-form">
             <label :class="{ error: $v.credentials.name.$error }">
               {{ $t('REGISTER.ACCOUNT_NAME.LABEL') }}
@@ -31,9 +35,10 @@
                 :placeholder="$t('REGISTER.ACCOUNT_NAME.PLACEHOLDER')"
                 @input="$v.credentials.name.$touch"
               />
-              <span v-if="$v.credentials.name.$error" class="message">
-                {{ $t('REGISTER.ACCOUNT_NAME.ERROR') }}
-              </span>
+              <span
+                v-if="$v.credentials.name.$error"
+                class="message"
+              >{{ $t('REGISTER.ACCOUNT_NAME.ERROR') }}</span>
             </label>
             <label :class="{ error: $v.credentials.email.$error }">
               {{ $t('REGISTER.EMAIL.LABEL') }}
@@ -43,11 +48,12 @@
                 :placeholder="$t('REGISTER.EMAIL.PLACEHOLDER')"
                 @input="$v.credentials.email.$touch"
               />
-              <span v-if="$v.credentials.email.$error" class="message">
-                {{ $t('REGISTER.EMAIL.ERROR') }}
-              </span>
+              <span
+                v-if="$v.credentials.email.$error"
+                class="message"
+              >{{ $t('REGISTER.EMAIL.ERROR') }}</span>
             </label>
-            <woot-submit-button
+            <woot-button
               :disabled="
                 $v.credentials.name.$invalid ||
                   $v.credentials.email.$invalid ||
@@ -56,16 +62,13 @@
               :button-text="$t('REGISTER.SUBMIT')"
               :loading="register.showLoading"
               button-class="large expanded"
-            >
-            </woot-submit-button>
+            ></woot-button>
             <p class="accept--terms" v-html="$t('REGISTER.TERMS_ACCEPT')"></p>
           </div>
         </form>
         <div class="column text-center sigin--footer">
           <span>Already have an account?</span>
-          <router-link to="/app/login">
-            {{ $t('LOGIN.TITLE') }}
-          </router-link>
+          <router-link to="/app/login">{{ $t('LOGIN.TITLE') }}</router-link>
         </div>
       </div>
     </div>

@@ -14,7 +14,6 @@
       <div class="small-12 medium-4 column">
         <form class="login-box column align-self-top" @submit.prevent="login()">
           <div class="column log-in-form">
-            <!-- <h4 class="text-center">{{$t('LOGIN.TITLE')}}</h4> -->
             <label :class="{ error: $v.credentials.email.$error }">
               {{ $t('LOGIN.EMAIL.LABEL') }}
               <input
@@ -33,7 +32,7 @@
                 @input="$v.credentials.password.$touch"
               />
             </label>
-            <woot-submit-button
+            <woot-button
               :disabled="
                 $v.credentials.email.$invalid ||
                   $v.credentials.password.$invalid ||
@@ -43,8 +42,7 @@
               :loading="loginApi.showLoading"
               button-class="large expanded"
             >
-            </woot-submit-button>
-            <!-- <input type="submit" class="button " v-on:click.prevent="login()" v-bind:value="" > -->
+            </woot-button>
           </div>
         </form>
         <div class="column text-center sigin__footer">
@@ -69,13 +67,7 @@
 
 import { required, email } from 'vuelidate/lib/validators';
 
-import WootSubmitButton from '../../components/buttons/FormSubmitButton';
-// import router from '../../routes';
-
 export default {
-  components: {
-    WootSubmitButton,
-  },
   data() {
     return {
       // We need to initialize the component with any

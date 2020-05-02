@@ -19,7 +19,7 @@ export default {
         return {
           headerTitle: 'INBOX_MGMT.HEADER',
           headerButtonText: 'SETTINGS.INBOXES.NEW_INBOX',
-          icon: 'ion-archive',
+          icon: 'inbox',
           newButtonRoutes: ['settings_inbox_list'],
           showBackButton,
         };

@@ -29,7 +29,7 @@
           {{ $t('SET_NEW_PASSWORD.CONFIRM_PASSWORD.ERROR') }}
         </span>
       </label>
-      <woot-submit-button
+      <woot-button
         :disabled="
           $v.credentials.password.$invalid ||
             $v.credentials.confirmPassword.$invalid ||
@@ -38,8 +38,9 @@
         :button-text="$t('SET_NEW_PASSWORD.SUBMIT')"
         :loading="newPasswordAPI.showLoading"
         button-class="expanded"
+        type="button"
       >
-      </woot-submit-button>
+      </woot-button>
       <!-- <input type="submit" class="button " v-on:click.prevent="login()" v-bind:value="" > -->
     </div>
   </form>
@@ -51,12 +52,7 @@
 import { required, minLength } from 'vuelidate/lib/validators';
 import Auth from '../../api/auth';
 
-import WootSubmitButton from '../../components/buttons/FormSubmitButton';
-
 export default {
-  components: {
-    WootSubmitButton,
-  },
   props: {
     resetPasswordToken: String,
     redirectUrl: String,

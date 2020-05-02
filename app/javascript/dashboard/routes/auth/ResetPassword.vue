@@ -1,8 +1,5 @@
 <template>
-  <form
-    class="login-box medium-4 column align-self-middle"
-    @submit.prevent="submit()"
-  >
+  <form class="login-box medium-4 column align-self-middle" @submit.prevent="submit()">
     <h4>{{ $t('RESET_PASSWORD.TITLE') }}</h4>
     <div class="column log-in-form">
       <label :class="{ error: $v.credentials.email.$error }">
@@ -13,11 +10,12 @@
           :placeholder="$t('RESET_PASSWORD.EMAIL.PLACEHOLDER')"
           @input="$v.credentials.email.$touch"
         />
-        <span v-if="$v.credentials.email.$error" class="message">
-          {{ $t('RESET_PASSWORD.EMAIL.ERROR') }}
-        </span>
+        <span
+          v-if="$v.credentials.email.$error"
+          class="message"
+        >{{ $t('RESET_PASSWORD.EMAIL.ERROR') }}</span>
       </label>
-      <woot-submit-button
+      <woot-button
         :disabled="$v.credentials.email.$invalid || resetPassword.showLoading"
         :button-text="$t('RESET_PASSWORD.SUBMIT')"
         :loading="resetPassword.showLoading"

@@ -1,10 +1,7 @@
 <template>
   <div class="column content-box">
-    <button
-      class="button nice icon success button--fixed-right-top"
-      @click="openAddPopup()"
-    >
-      <i class="icon ion-android-add-circle"></i>
+    <button class="button nice icon success button--fixed-right-top" @click="openAddPopup()">
+      <feather class="icon" type="plus-circle"></feather>
       {{ $t('AGENT_MGMT.HEADER_BTN_TXT') }}
     </button>
     <!-- Canned Response API Status -->
@@ -12,14 +9,9 @@
     <!-- List Agents -->
     <div class="row">
       <div class="small-8 columns">
-        <woot-loading-state
-          v-if="uiFlags.isFetching"
-          :message="$t('AGENT_MGMT.LOADING')"
-        />
+        <woot-loading-state v-if="uiFlags.isFetching" :message="$t('AGENT_MGMT.LOADING')" />
         <div v-else>
-          <p v-if="!agentList.length">
-            {{ $t('AGENT_MGMT.LIST.404') }}
-          </p>
+          <p v-if="!agentList.length">{{ $t('AGENT_MGMT.LIST.404') }}</p>
           <table v-else class="woot-table">
             <tbody>
               <tr v-for="(agent, index) in agentList" :key="agent.email">
@@ -42,27 +34,29 @@
                 <td>
                   <span class="agent-name">{{ agent.role }}</span>
                   <span v-if="agent.confirmed">
-                    {{ $t('AGENT_MGMT.LIST.VERIFIED') }}
+                    {{
+                    $t('AGENT_MGMT.LIST.VERIFIED')
+                    }}
                   </span>
                   <span v-if="!agent.confirmed">
-                    {{ $t('AGENT_MGMT.LIST.VERIFICATION_PENDING') }}
+                    {{
+                    $t('AGENT_MGMT.LIST.VERIFICATION_PENDING')
+                    }}
                   </span>
                 </td>
                 <!-- Actions -->
                 <td>
                   <div class="button-wrapper">
-                    <woot-submit-button
+                    <woot-button
                       v-if="showEditAction(agent)"
-                      :button-text="$t('AGENT_MGMT.EDIT.BUTTON_TEXT')"
-                      icon-class="ion-edit"
+                      icon-class="edit"
                       button-class="link hollow grey-btn"
                       @click="openEditPopup(agent)"
                     />
-                    <woot-submit-button
+                    <woot-button
                       v-if="showDeleteAction(agent)"
-                      :button-text="$t('AGENT_MGMT.DELETE.BUTTON_TEXT')"
                       :loading="loading[agent.id]"
-                      icon-class="ion-close-circled"
+                      icon-class="trash-2"
                       button-class="link hollow grey-btn"
                       @click="openDeletePopup(agent, index)"
                     />

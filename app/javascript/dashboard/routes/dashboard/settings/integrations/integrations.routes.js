@@ -12,7 +12,7 @@ export default {
         const showBackButton = params.name !== 'settings_integrations';
         return {
           headerTitle: 'INTEGRATION_SETTINGS.HEADER',
-          icon: 'ion-flash',
+          icon: 'zap',
           showBackButton,
         };
       },

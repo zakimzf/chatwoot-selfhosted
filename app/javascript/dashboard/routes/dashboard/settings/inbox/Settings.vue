@@ -1,9 +1,6 @@
 <template>
   <div class="settings columns container">
-    <woot-modal-header
-      :header-image="inbox.avatarUrl"
-      :header-title="inboxName"
-    />
+    <woot-modal-header :header-image="inbox.avatarUrl" :header-title="inboxName" />
 
     <div class="settings--content">
       <settings-section
@@ -40,7 +37,7 @@
           <div class="medium-12 columns">
             <label>
               {{
-                $t('INBOX_MGMT.ADD.WEBSITE_CHANNEL.CHANNEL_WELCOME_TITLE.LABEL')
+              $t('INBOX_MGMT.ADD.WEBSITE_CHANNEL.CHANNEL_WELCOME_TITLE.LABEL')
               }}
               <input
                 v-model.trim="channelWelcomeTitle"
@@ -56,9 +53,9 @@
           <div class="medium-12 columns">
             <label>
               {{
-                $t(
-                  'INBOX_MGMT.ADD.WEBSITE_CHANNEL.CHANNEL_WELCOME_TAGLINE.LABEL'
-                )
+              $t(
+              'INBOX_MGMT.ADD.WEBSITE_CHANNEL.CHANNEL_WELCOME_TAGLINE.LABEL'
+              )
               }}
               <input
                 v-model.trim="channelWelcomeTagline"
@@ -74,9 +71,9 @@
           <div class="medium-12 columns">
             <label>
               {{
-                $t(
-                  'INBOX_MGMT.ADD.WEBSITE_CHANNEL.CHANNEL_AGENT_AWAY_MESSAGE.LABEL'
-                )
+              $t(
+              'INBOX_MGMT.ADD.WEBSITE_CHANNEL.CHANNEL_AGENT_AWAY_MESSAGE.LABEL'
+              )
               }}
               <input
                 v-model.trim="channelAgentAwayMessage"
@@ -93,10 +90,7 @@
           <div class="medium-12 columns">
             <label>
               {{ $t('INBOX_MGMT.ADD.WEBSITE_CHANNEL.WIDGET_COLOR.LABEL') }}
-              <compact
-                v-model="inbox.widget_color"
-                class="widget-color--selector"
-              />
+              <compact v-model="inbox.widget_color" class="widget-color--selector" />
             </label>
           </div>
         </div>
@@ -105,25 +99,18 @@
           <label>
             {{ $t('INBOX_MGMT.SETTINGS_POPUP.AUTO_ASSIGNMENT') }}
             <select v-model="autoAssignment">
-              <option value="true">
-                {{ $t('INBOX_MGMT.EDIT.AUTO_ASSIGNMENT.ENABLED') }}
-              </option>
-              <option value="false">
-                {{ $t('INBOX_MGMT.EDIT.AUTO_ASSIGNMENT.DISABLED') }}
-              </option>
+              <option value="true">{{ $t('INBOX_MGMT.EDIT.AUTO_ASSIGNMENT.ENABLED') }}</option>
+              <option value="false">{{ $t('INBOX_MGMT.EDIT.AUTO_ASSIGNMENT.DISABLED') }}</option>
             </select>
-            <p class="help-text">
-              {{ $t('INBOX_MGMT.SETTINGS_POPUP.AUTO_ASSIGNMENT_SUB_TEXT') }}
-            </p>
+            <p class="help-text">{{ $t('INBOX_MGMT.SETTINGS_POPUP.AUTO_ASSIGNMENT_SUB_TEXT') }}</p>
           </label>
         </div>
 
-        <woot-submit-button
+        <woot-button
           :button-text="$t('INBOX_MGMT.SETTINGS_POPUP.UPDATE')"
           :loading="uiFlags.isUpdatingInbox"
           @click="updateInbox"
-        >
-        </woot-submit-button>
+        ></woot-button>
       </settings-section>
     </div>
 
@@ -147,18 +134,14 @@
           @select="$v.selectedAgents.$touch"
         />
 
-        <woot-submit-button
+        <woot-button
           :button-text="$t('INBOX_MGMT.SETTINGS_POPUP.UPDATE')"
           :loading="isAgentListUpdating"
           @click="updateAgents"
-        >
-        </woot-submit-button>
+        ></woot-button>
       </settings-section>
     </div>
-    <div
-      v-if="inbox.channel_type === 'Channel::FacebookPage'"
-      class="settings--content"
-    >
+    <div v-if="inbox.channel_type === 'Channel::FacebookPage'" class="settings--content">
       <settings-section
         :title="$t('INBOX_MGMT.SETTINGS_POPUP.MESSENGER_HEADING')"
         :sub-title="$t('INBOX_MGMT.SETTINGS_POPUP.MESSENGER_SUB_HEAD')"

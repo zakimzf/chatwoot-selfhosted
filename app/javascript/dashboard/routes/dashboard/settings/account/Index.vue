@@ -1,11 +1,9 @@
 <template>
-  <div class="columns profile--settings ">
+  <div class="columns profile--settings">
     <form @submit.prevent="updateAccount()">
       <div class="small-12 row profile--settings--row">
-        <div class="columns small-3 ">
-          <h4 class="block-title">
-            {{ $t('GENERAL_SETTINGS.FORM.GENERAL_SECTION.TITLE') }}
-          </h4>
+        <div class="columns small-3">
+          <h4 class="block-title">{{ $t('GENERAL_SETTINGS.FORM.GENERAL_SECTION.TITLE') }}</h4>
           <p>{{ $t('GENERAL_SETTINGS.FORM.GENERAL_SECTION.NOTE') }}</p>
         </div>
         <div class="columns small-9 medium-5">
@@ -17,9 +15,7 @@
               :placeholder="$t('GENERAL_SETTINGS.FORM.NAME.PLACEHOLDER')"
               @blur="$v.name.$touch"
             />
-            <span v-if="$v.name.$error" class="message">
-              {{ $t('GENERAL_SETTINGS.FORM.NAME.ERROR') }}
-            </span>
+            <span v-if="$v.name.$error" class="message">{{ $t('GENERAL_SETTINGS.FORM.NAME.ERROR') }}</span>
           </label>
           <label :class="{ error: $v.locale.$error }">
             {{ $t('GENERAL_SETTINGS.FORM.LANGUAGE.LABEL') }}
@@ -29,9 +25,10 @@
               <option value="en">English</option>
               <option value="ml">Malayalam</option>
             </select>
-            <span v-if="$v.locale.$error" class="message">
-              {{ $t('GENERAL_SETTINGS.FORM.LANGUAGE.ERROR') }}
-            </span>
+            <span
+              v-if="$v.locale.$error"
+              class="message"
+            >{{ $t('GENERAL_SETTINGS.FORM.LANGUAGE.ERROR') }}</span>
           </label>
           <label>
             {{ $t('GENERAL_SETTINGS.FORM.DOMAIN.LABEL') }}
@@ -43,25 +40,25 @@
           </label>
           <label>
             {{ $t('GENERAL_SETTINGS.FORM.ENABLE_DOMAIN_EMAIL.LABEL') }}
-            <select v-model="domainEmailsEnabled">
+            <select
+              v-model="domainEmailsEnabled"
+            >
               <option value="true">
                 {{
-                  $t(
-                    'GENERAL_SETTINGS.FORM.ENABLE_DOMAIN_EMAIL.OPTIONS.ENABLED'
-                  )
+                $t(
+                'GENERAL_SETTINGS.FORM.ENABLE_DOMAIN_EMAIL.OPTIONS.ENABLED'
+                )
                 }}
               </option>
               <option value="false">
                 {{
-                  $t(
-                    'GENERAL_SETTINGS.FORM.ENABLE_DOMAIN_EMAIL.OPTIONS.DISABLED'
-                  )
+                $t(
+                'GENERAL_SETTINGS.FORM.ENABLE_DOMAIN_EMAIL.OPTIONS.DISABLED'
+                )
                 }}
               </option>
             </select>
-            <p class="help-text">
-              {{ $t('GENERAL_SETTINGS.FORM.ENABLE_DOMAIN_EMAIL.PLACEHOLDER') }}
-            </p>
+            <p class="help-text">{{ $t('GENERAL_SETTINGS.FORM.ENABLE_DOMAIN_EMAIL.PLACEHOLDER') }}</p>
           </label>
           <label>
             {{ $t('GENERAL_SETTINGS.FORM.SUPPORT_EMAIL.LABEL') }}
@@ -75,12 +72,11 @@
           </label>
         </div>
       </div>
-      <woot-submit-button
+      <woot-button
         class="button nice success button--fixed-right-top"
         :button-text="$t('GENERAL_SETTINGS.SUBMIT')"
         :loading="isUpdating"
-      >
-      </woot-submit-button>
+      ></woot-button>
     </form>
   </div>
 </template>
