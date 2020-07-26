@@ -1,5 +1,7 @@
 json.account_id resource.account.id
 json.availability_status resource.availability_status
+json.available_name resource.available_name
+json.display_name resource.display_name
 json.confirmed resource.confirmed?
 json.email resource.email
 json.id resource.id

@@ -53,12 +53,12 @@
             />
           </label>
           <label v-if="featureCustomDomainEmailEnabled">
-            {{ $t('GENERAL_SETTINGS.FORM.SUPPORT_EMAIL.LABEL') }}
+            {{ $t('GENERAL_SETTINGS.FORM.supportEmail.LABEL') }}
             <input
               v-model="supportEmail"
               type="text"
               :placeholder="
-                $t('GENERAL_SETTINGS.FORM.SUPPORT_EMAIL.PLACEHOLDER')
+                $t('GENERAL_SETTINGS.FORM.supportEmail.PLACEHOLDER')
               "
             />
           </label>
@@ -136,8 +136,8 @@ export default {
           locale,
           id,
           domain,
-          support_email,
-          custom_email_domain_enabled,
+          supportEmail,
+          customEmailDomainEnabled,
           features,
         } = this.getAccount(this.accountId);
 
@@ -146,8 +146,8 @@ export default {
         this.locale = locale;
         this.id = id;
         this.domain = domain;
-        this.supportEmail = support_email;
-        this.customEmailDomainEnabled = custom_email_domain_enabled;
+        this.supportEmail = supportEmail;
+        this.customEmailDomainEnabled = customEmailDomainEnabled;
         this.features = features;
       } catch (error) {
         // Ignore error
@@ -165,7 +165,7 @@ export default {
           locale: this.locale,
           name: this.name,
           domain: this.domain,
-          support_email: this.supportEmail,
+          supportEmail: this.supportEmail,
         });
         Vue.config.lang = this.locale;
         this.showAlert(this.$t('GENERAL_SETTINGS.UPDATE.SUCCESS'));

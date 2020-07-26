@@ -57,9 +57,9 @@
       </transition>
       <div class="current-user" @click.prevent="showOptions()">
         <thumbnail
-          :src="currentUser.avatar_url"
+          :src="currentUser.avatarUrl"
           :username="currentUser.name"
-          :status="currentUser.availability_status"
+          :status="currentUser.availabilityStatus"
         />
         <div class="current-user--data">
           <h3 class="current-user--name">

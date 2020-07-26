@@ -1,5 +1,4 @@
 /* eslint no-console: 0 */
-/* global axios */
 /* eslint no-undef: "error" */
 
 import Cookies from 'js-cookie';
@@ -38,10 +37,6 @@ export default {
         });
     });
     return fetchPromise;
-  },
-  validityCheck() {
-    const urlData = endPoints('validityCheck');
-    return axios.get(urlData.url);
   },
   logout() {
     const urlData = endPoints('logout');
@@ -116,20 +111,5 @@ export default {
   resetPassword({ email }) {
     const urlData = endPoints('resetPassword');
     return axios.post(urlData.url, { email });
-  },
-
-  profileUpdate({ password, password_confirmation, ...profileAttributes }) {
-    const formData = new FormData();
-    Object.keys(profileAttributes).forEach(key => {
-      const value = profileAttributes[key];
-      if (value) {
-        formData.append(`profile[${key}]`, value);
-      }
-    });
-    if (password && password_confirmation) {
-      formData.append('profile[password]', password);
-      formData.append('profile[password_confirmation]', password_confirmation);
-    }
-    return axios.put(endPoints('profileUpdate').url, formData);
   },
 };

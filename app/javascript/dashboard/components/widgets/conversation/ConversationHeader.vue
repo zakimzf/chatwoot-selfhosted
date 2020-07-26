@@ -25,7 +25,7 @@
         <multiselect
           v-model="currentChat.meta.assignee"
           :options="agentList"
-          label="name"
+          label="availableName"
           :allow-empty="true"
           deselect-label="Remove"
           placeholder="Select Agent"
@@ -46,7 +46,6 @@
 /* eslint no-console: 0 */
 /* eslint no-param-reassign: 0 */
 /* eslint no-shadow: 0 */
-/* global bus */
 
 import { mapGetters } from 'vuex';
 import Thumbnail from '../Thumbnail';
@@ -95,10 +94,10 @@ export default {
       return [
         {
           confirmed: true,
-          name: 'None',
+          availableName: 'None',
           id: 0,
           role: 'agent',
-          account_id: 0,
+          accountId: 0,
           email: 'None',
         },
         ...this.agents,

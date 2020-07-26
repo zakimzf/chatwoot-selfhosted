@@ -6,6 +6,7 @@ import authAPI from '../../api/auth';
 import createAxios from '../../helper/APIHelper';
 import actionCable from '../../helper/actionCable';
 import { setUser, getHeaderExpiry, clearCookiesOnLogout } from '../utils/api';
+import CurrentUserAPI from '../../api/currentUser';
 
 const state = {
   currentUser: {
@@ -35,7 +36,7 @@ export const getters = {
   },
 
   getCurrentUserAvailabilityStatus(_state) {
-    return _state.currentUser.availability_status;
+    return _state.currentUser.availabilityStatus;
   },
 
   getCurrentAccountId(_state) {
@@ -75,7 +76,7 @@ export const actions = {
   },
   async validityCheck(context) {
     try {
-      const response = await authAPI.validityCheck();
+      const response = await CurrentUserAPI.validateToken();
       setUser(response.data.payload.data, getHeaderExpiry(response));
       context.commit(types.default.SET_CURRENT_USER);
     } catch (error) {
@@ -97,7 +98,7 @@ export const actions = {
   },
   updateProfile: async ({ commit }, params) => {
     try {
-      const response = await authAPI.profileUpdate(params);
+      const response = await CurrentUserAPI.profileUpdate(params);
       setUser(response.data, getHeaderExpiry(response));
       commit(types.default.SET_CURRENT_USER);
     } catch (error) {
@@ -122,7 +123,7 @@ export const actions = {
 // mutations
 const mutations = {
   [types.default.SET_CURRENT_USER_AVAILABILITY](_state, status) {
-    Vue.set(_state.currentUser, 'availability_status', status);
+    Vue.set(_state.currentUser, 'availabilityStatus', status);
   },
   [types.default.CLEAR_USER](_state) {
     _state.currentUser.id = null;
@@ -132,7 +133,6 @@ const mutations = {
       ...authAPI.getAuthData(),
       ...authAPI.getCurrentUser(),
     };
-
     Vue.set(_state, 'currentUser', currentUser);
   },
   [types.default.SET_CURRENT_ACCOUNT_ID](_state, accountId) {

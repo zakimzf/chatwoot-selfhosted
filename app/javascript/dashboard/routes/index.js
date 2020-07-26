@@ -7,16 +7,18 @@ import dashboard from './dashboard/dashboard.routes';
 import authRoute from './auth/auth.routes';
 import { frontendURL } from '../helper/URLHelper';
 
-const loggedInUser = auth.getCurrentUser() || {};
-const routes = [
-  ...login.routes,
-  ...dashboard.routes,
-  ...authRoute.routes,
-  {
-    path: '/',
-    redirect: frontendURL(`accounts/${loggedInUser.account_id}/dashboard`),
-  },
-];
+const routes = () => {
+  const loggedInUser = auth.getCurrentUser() || {};
+  return [
+    ...login.routes,
+    ...dashboard.routes,
+    ...authRoute.routes,
+    {
+      path: '/',
+      redirect: frontendURL(`accounts/${loggedInUser.accountId}/dashboard`),
+    },
+  ];
+};
 
 window.roleWiseRoutes = {
   agent: [],
@@ -39,11 +41,11 @@ const generateRoleWiseRoute = route => {
 // Create a object of routes
 // accessible by each role.
 // returns an object with roles as keys and routeArr as values
-generateRoleWiseRoute(routes);
+generateRoleWiseRoute(routes());
 
 export const router = new VueRouter({
   mode: 'history',
-  routes, // short for routes: routes
+  routes: routes(), // short for routes: routes
 });
 
 const unProtectedRoutes = ['login', 'auth_signup', 'auth_reset_password'];

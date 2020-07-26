@@ -1,6 +1,6 @@
-/* global axios */
-
 const DEFAULT_API_VERSION = 'v1';
+import camelcaseKeys from 'camelcase-keys';
+import snakecaseKeys from 'snakecase-keys';
 
 class ApiClient {
   constructor(resource, options = {}) {
@@ -11,6 +11,45 @@ class ApiClient {
 
   get url() {
     return `${this.baseUrl()}/${this.resource}`;
+  }
+
+  transformResponse = [
+    data => {
+      if (data) {
+        return camelcaseKeys(JSON.parse(data), { deep: true });
+      }
+      return data;
+    },
+  ];
+
+  transformRequest = [
+    (data, headers) => {
+      if (data) {
+        if (!headers['Content-Type']) {
+          headers['Content-Type'] = 'application/json;charset=utf-8';
+        }
+        return JSON.stringify(snakecaseKeys(data, { deep: true }));
+      }
+      return data;
+    },
+  ];
+
+  makeRequest({ url, method, params, data }) {
+    const config = { method, url };
+    if (params) {
+      config.params = params;
+    }
+
+    if (data) {
+      config.data = data;
+    }
+
+    if (this.options.transformKeys) {
+      config.transformRequest = this.transformRequest;
+      config.transformResponse = this.transformResponse;
+    }
+
+    return axios.request(config);
   }
 
   baseUrl() {
@@ -30,23 +69,27 @@ class ApiClient {
   }
 
   get() {
-    return axios.get(this.url);
+    return this.makeRequest({ url: this.url, method: 'get' });
   }
 
   show(id) {
-    return axios.get(`${this.url}/${id}`);
+    return this.makeRequest({ url: `${this.url}/${id}`, method: 'get' });
   }
 
   create(data) {
-    return axios.post(this.url, data);
+    return this.makeRequest({ url: this.url, method: 'post', data });
   }
 
   update(id, data) {
-    return axios.patch(`${this.url}/${id}`, data);
+    return this.makeRequest({
+      url: `${this.url}/${id}`,
+      method: 'patch',
+      data,
+    });
   }
 
   delete(id) {
-    return axios.delete(`${this.url}/${id}`);
+    return this.makeRequest({ url: `${this.url}/${id}`, method: 'delete' });
   }
 }
 

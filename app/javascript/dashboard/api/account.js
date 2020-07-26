@@ -1,9 +1,8 @@
-/* global axios */
 import ApiClient from './ApiClient';
 
 class AccountAPI extends ApiClient {
   constructor() {
-    super('', { accountScoped: true });
+    super('', { accountScoped: true, transformKeys: true });
   }
 
   createAccount(data) {

@@ -34,7 +34,7 @@ export default {
       return this.agents.map(agent => ({
         id: agent.id,
         avatar: agent.avatar_url,
-        name: agent.name,
+        name: agent.displayName,
       }));
     },
     title() {

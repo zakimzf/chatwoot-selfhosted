@@ -30,7 +30,7 @@
                     class="columns"
                     :username="agent.name"
                     size="40px"
-                    :status="agent.availability_status"
+                    :status="agent.availabilityStatus"
                   />
                 </td>
                 <!-- Agent Name + Email -->
@@ -112,8 +112,6 @@
   </div>
 </template>
 <script>
-/* global bus */
-
 import { mapGetters } from 'vuex';
 import globalConfigMixin from 'shared/mixins/globalConfigMixin';
 import Thumbnail from '../../../../components/widgets/Thumbnail';

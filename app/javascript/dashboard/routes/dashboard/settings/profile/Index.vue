@@ -1,8 +1,8 @@
 <template>
-  <div class="columns profile--settings ">
+  <div class="columns profile--settings">
     <form @submit.prevent="updateUser">
       <div class="small-12 row profile--settings--row">
-        <div class="columns small-3 ">
+        <div class="columns small-3">
           <h4 class="block-title">
             {{ $t('PROFILE_SETTINGS.FORM.PROFILE_SECTION.TITLE') }}
           </h4>
@@ -24,6 +24,20 @@
             />
             <span v-if="$v.name.$error" class="message">
               {{ $t('PROFILE_SETTINGS.FORM.NAME.ERROR') }}
+            </span>
+          </label>
+          <label :class="{ error: $v.displayName.$error }">
+            {{ $t('PROFILE_SETTINGS.FORM.DISPLAY_NAME.LABEL') }}
+            <input
+              v-model="displayName"
+              type="text"
+              :placeholder="
+                $t('PROFILE_SETTINGS.FORM.DISPLAY_NAME.PLACEHOLDER')
+              "
+              @input="$v.displayName.$touch"
+            />
+            <span v-if="$v.name.$error" class="message">
+              {{ $t('PROFILE_SETTINGS.FORM.DISPLAY_NAME.ERROR') }}
             </span>
           </label>
           <label :class="{ error: $v.email.$error }">
@@ -56,7 +70,7 @@
         </div>
       </div>
       <div class="profile--settings--row row">
-        <div class="columns small-3 ">
+        <div class="columns small-3">
           <h4 class="block-title">
             {{ $t('PROFILE_SETTINGS.FORM.PASSWORD_SECTION.TITLE') }}
           </h4>
@@ -93,22 +107,21 @@
       </div>
       <notification-settings />
       <div class="profile--settings--row row">
-        <div class="columns small-3 ">
+        <div class="columns small-3">
           <h4 class="block-title">
             {{ $t('PROFILE_SETTINGS.FORM.ACCESS_TOKEN.TITLE') }}
           </h4>
           <p>{{ $t('PROFILE_SETTINGS.FORM.ACCESS_TOKEN.NOTE') }}</p>
         </div>
         <div class="columns small-9 medium-5">
-          <woot-code :script="currentUser.access_token"></woot-code>
+          <woot-code :script="currentUser.accessToken"></woot-code>
         </div>
       </div>
       <woot-submit-button
         class="button nice success button--fixed-right-top"
         :button-text="$t('PROFILE_SETTINGS.BTN_TEXT')"
         :loading="isUpdating"
-      >
-      </woot-submit-button>
+      ></woot-submit-button>
     </form>
   </div>
 </template>
@@ -130,6 +143,7 @@ export default {
       avatarFile: '',
       avatarUrl: '',
       name: '',
+      displayName: '',
       email: '',
       password: '',
       passwordConfirmation: '',
@@ -141,6 +155,7 @@ export default {
     name: {
       required,
     },
+    displayName: {},
     email: {
       required,
       email,
@@ -186,8 +201,9 @@ export default {
     initializeUser() {
       this.name = this.currentUser.name;
       this.email = this.currentUser.email;
-      this.avatarUrl = this.currentUser.avatar_url;
-      this.availability = this.currentUser.availability_status;
+      this.avatarUrl = this.currentUser.avatarUrl;
+      this.availability = this.currentUser.availabilityStatus;
+      this.displayName = this.currentUser.displayName;
     },
     async updateUser() {
       this.$v.$touch();
@@ -204,7 +220,8 @@ export default {
           avatar: this.avatarFile,
           password: this.password,
           availability: this.availability,
-          password_confirmation: this.passwordConfirmation,
+          passwordConfirmation: this.passwordConfirmation,
+          displayName: this.displayName,
         });
         this.isUpdating = false;
         if (hasEmailChanged) {

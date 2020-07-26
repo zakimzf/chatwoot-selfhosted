@@ -196,17 +196,17 @@
 
 <script>
 /* eslint no-console: 0 */
-/* global bus */
 import { mapGetters } from 'vuex';
 import { createMessengerScript } from 'dashboard/helper/scriptGenerator';
 import configMixin from 'shared/mixins/configMixin';
+import alertMixin from 'shared/mixins/alertMixin';
 import SettingsSection from '../../../../components/SettingsSection';
 
 export default {
   components: {
     SettingsSection,
   },
-  mixins: [configMixin],
+  mixins: [configMixin, alertMixin],
   data() {
     return {
       avatarFile: null,
@@ -267,9 +267,6 @@ export default {
     this.fetchInboxSettings();
   },
   methods: {
-    showAlert(message) {
-      bus.$emit('newToastMessage', message);
-    },
     fetchInboxSettings() {
       this.selectedAgents = [];
       this.$store.dispatch('agents/get');
@@ -291,14 +288,14 @@ export default {
           inboxId: this.currentInboxId,
         });
         const {
-          data: { payload },
+          data: { payload: inboxMembers },
         } = response;
-        payload.forEach(el => {
-          const [item] = this.agentList.filter(
-            agent => agent.id === el.user_id
+        inboxMembers.forEach(inboxMember => {
+          const [selectedAgent] = this.agentList.filter(
+            agent => agent.id === inboxMember.id
           );
-          if (item) {
-            this.selectedAgents.push(item);
+          if (selectedAgent) {
+            this.selectedAgents.push(selectedAgent);
           }
         });
       } catch (error) {

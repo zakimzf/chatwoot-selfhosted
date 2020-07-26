@@ -59,13 +59,13 @@ export default {
         return false;
       }
       if (channel === 'facebook') {
-        return this.enabledFeatures.channel_facebook;
+        return this.enabledFeatures.channelFacebook;
       }
       if (channel === 'twitter') {
-        return this.enabledFeatures.channel_twitter;
+        return this.enabledFeatures.channelTwitter;
       }
       if (channel === 'email') {
-        return this.enabledFeatures.channel_email;
+        return this.enabledFeatures.channelEmail;
       }
       return ['website', 'twilio', 'api'].includes(channel);
     },
