@@ -1,6 +1,6 @@
 {
   "LOGIN": {
-    "TITLE": "로그인",
+    "TITLE": "로그인 %{installationName}",
     "EMAIL": {
       "LABEL": "이메일",
       "PLACEHOLDER": "이메일 예시: someone@example.com"

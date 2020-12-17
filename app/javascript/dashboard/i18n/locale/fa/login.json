@@ -1,6 +1,6 @@
 {
   "LOGIN": {
-    "TITLE": "ورود به چت ووت",
+    "TITLE": "%{installationName} ورود به",
     "EMAIL": {
       "LABEL": "ایمیل",
       "PLACEHOLDER": "ایمیل به عنوان مثال: someone@example.com"

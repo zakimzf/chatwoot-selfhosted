@@ -1,6 +1,6 @@
 {
   "LOGIN": {
-    "TITLE": "சாட்வூட்டில் உள்நுழையவும்",
+    "TITLE": "%{installationName}ட்டில் உள்நுழையவும்",
     "EMAIL": {
       "LABEL": "இமெயில்",
       "PLACEHOLDER": "இமெயில் எ.கா:someone@example.com"

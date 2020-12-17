@@ -1,6 +1,6 @@
 {
   "LOGIN": {
-    "TITLE": "ചാറ്റ് വൂട്ടിലേക്ക് ലോഗിൻ ചെയ്യുക",
+    "TITLE": "%{installationName}ലേക്ക് ലോഗിൻ ചെയ്യുക",
     "EMAIL": {
       "LABEL": "ഇമെയിൽ",
       "PLACEHOLDER": "ഇമെയിൽ ഉദാ: someone@example.com"
