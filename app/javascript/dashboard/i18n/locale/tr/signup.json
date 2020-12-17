@@ -2,7 +2,7 @@
   "REGISTER": {
     "TRY_WOOT": "Bir hesap oluştur",
     "TITLE": "Kayıt ol",
-    "TERMS_ACCEPT": "Kaydolarak,  <a href=\"https://www.chatwoot.com/terms\"> T & C </a> ve <a href = \"https://www.chatwoot.com/privacy\"> Gizlilik politikası </a> kabul etmiş olursunuz.",
+    "TERMS_ACCEPT": "Kaydolarak,  <a href=\"%{termsURL}\"> T & C </a> ve <a href = \"%{privacyUrl}\"> Gizlilik politikası </a> kabul etmiş olursunuz.",
     "ACCOUNT_NAME": {
       "LABEL": "Hesap adı",
       "PLACEHOLDER": "Şirketiniz",

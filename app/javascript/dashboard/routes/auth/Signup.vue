@@ -13,30 +13,14 @@
     <div class="row align-center">
       <div class="medium-5 column small-12">
         <ul class="signup--features">
-          <li>
-            <i class="ion-beer beer"></i>
-            <span>{{ $t('REGISTER.FEATURES.UNLIMITED_INBOXES') }}</span>
-          </li>
-          <li>
-            <i class="ion-stats-bars report"></i>
-            <span>{{ $t('REGISTER.FEATURES.ROBUST_REPORTING') }}</span>
-          </li>
-          <li>
-            <i class="ion-chatbox-working canned"></i>
-            <span>{{ $t('REGISTER.FEATURES.CANNED_RESPONSES') }}</span>
-          </li>
-          <li>
-            <i class="ion-loop uptime"></i>
-            <span>{{ $t('REGISTER.FEATURES.AUTO_ASSIGNMENT') }}</span>
-          </li>
-          <li>
-            <i class="ion-locked secure"></i>
-            <span>{{ $t('REGISTER.FEATURES.SECURITY') }}</span>
+          <li v-for="feature in features" :key="feature.key">
+            <i :class="feature.className" />
+            <span>{{ $t(`REGISTER.FEATURES.${feature.key}`) }}</span>
           </li>
         </ul>
       </div>
       <div class="medium-5 column small-12">
-        <form class="signup--box login-box " @submit.prevent="submit()">
+        <form class="signup--box login-box" @submit.prevent="submit">
           <div class="column log-in-form">
             <label :class="{ error: $v.credentials.name.$error }">
               {{ $t('REGISTER.ACCOUNT_NAME.LABEL') }}
@@ -66,10 +50,10 @@
               :disabled="
                 $v.credentials.name.$invalid ||
                   $v.credentials.email.$invalid ||
-                  register.showLoading
+                  isRegistrationInProgress
               "
               :button-text="$t('REGISTER.SUBMIT')"
-              :loading="register.showLoading"
+              :loading="isRegistrationInProgress"
               button-class="large expanded"
             >
             </woot-submit-button>
@@ -77,13 +61,12 @@
           </div>
         </form>
         <div class="column text-center sigin--footer">
-          <span>Already have an account?</span>
+          <span>{{ $t('REGISTER.HAVE_AN_ACCOUNT') }}</span>
           <router-link to="/app/login">
             {{
-              useInstallationName(
-                $t('LOGIN.TITLE'),
-                globalConfig.installationName
-              )
+              $t('LOGIN.TITLE', {
+                installationName: globalConfig.installationName,
+              })
             }}
           </router-link>
         </div>
@@ -102,6 +85,7 @@ export default {
   mixins: [globalConfigMixin],
   data() {
     return {
+      isRegistrationInProgress: false,
       credentials: {
         name: '',
         email: '',
@@ -111,6 +95,13 @@ export default {
         showLoading: false,
       },
       error: '',
+      features: [
+        { key: 'UNLIMITED_INBOXES', className: 'ion-beer beer' },
+        { key: 'ROBUST_REPORTING', className: 'ion-stats-bars report' },
+        { key: 'CANNED_RESPONSES', className: 'ion-chatbox-working canned' },
+        { key: 'AUTO_ASSIGNMENT', className: 'ion-loop uptime' },
+        { key: 'SECURITY', className: 'ion-locked secure' },
+      ],
     };
   },
   validations: {
@@ -126,39 +117,29 @@ export default {
     },
   },
   computed: {
-    ...mapGetters({
-      globalConfig: 'globalConfig/get',
-    }),
+    ...mapGetters({ globalConfig: 'globalConfig/get' }),
     termsLink() {
-      return this.$t('REGISTER.TERMS_ACCEPT')
-        .replace('https://www.chatwoot.com/terms', this.globalConfig.termsURL)
-        .replace(
-          'https://www.chatwoot.com/privacy-policy',
-          this.globalConfig.privacyURL
-        );
+      const { termsURL, privacyURL } = this.globalConfig;
+      return this.$t('REGISTER.TERMS_ACCEPT', { termsURL, privacyURL });
     },
   },
   methods: {
-    showAlert(message) {
-      // Reset loading, current selected agent
-      this.register.showLoading = false;
-      bus.$emit('newToastMessage', message);
-    },
-    submit() {
-      this.register.showLoading = true;
-      Auth.register(this.credentials)
-        .then(res => {
-          if (res.status === 200) {
-            window.location = '/';
-          }
-        })
-        .catch(error => {
-          let errorMessage = this.$t('REGISTER.API.ERROR_MESSAGE');
-          if (error.response && error.response.data.message) {
-            errorMessage = error.response.data.message;
-          }
-          this.showAlert(errorMessage);
-        });
+    async submit() {
+      this.isRegistrationInProgress = true;
+      try {
+        const response = await Auth.register(this.credentials);
+        if (response.status === 200) {
+          window.location = '/';
+        }
+      } catch (error) {
+        let errorMessage = this.$t('REGISTER.API.ERROR_MESSAGE');
+        if (error.response && error.response.data.message) {
+          errorMessage = error.response.data.message;
+        }
+        this.showAlert(errorMessage);
+      } finally {
+        this.isRegistrationInProgress = false;
+      }
     },
   },
 };

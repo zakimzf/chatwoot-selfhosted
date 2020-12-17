@@ -2,7 +2,7 @@
   "REGISTER": {
     "TRY_WOOT": "Înregistrați un cont",
     "TITLE": "Inregistrare",
-    "TERMS_ACCEPT": "Prin înregistrare, ești de acord cu politica noastră de confidențialitate <a href=\"https://www.chatwoot.com/terms\">T & C</a> și <a href=\"https://www.chatwoot.com/privacy-policy\"></a>",
+    "TERMS_ACCEPT": "Prin înregistrare, ești de acord cu politica noastră de confidențialitate <a href=\"%{termsURL}\">T & C</a> și <a href=\"%{privacyURL}\"></a>",
     "ACCOUNT_NAME": {
       "LABEL": "Nume cont",
       "PLACEHOLDER": "Wayne Enterprises",

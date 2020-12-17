@@ -2,7 +2,7 @@
   "REGISTER": {
     "TRY_WOOT": "Załóż konto",
     "TITLE": "Rejestracja",
-    "TERMS_ACCEPT": "Rejestrując się, akceptujesz naszą <a href=\"https://www.chatwoot.com/terms\">T & C</a> i <a href=\"https://www.chatwoot.com/privacy-policy\">politykę prywatności</a>",
+    "TERMS_ACCEPT": "Rejestrując się, akceptujesz naszą <a href=\"%{termsURL}\">T & C</a> i <a href=\"%{privacyURL}\">politykę prywatności</a>",
     "ACCOUNT_NAME": {
       "LABEL": "Nazwa konta",
       "PLACEHOLDER": "Przedsiębiorstwa Wayne",

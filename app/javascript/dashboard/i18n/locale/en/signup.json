@@ -2,7 +2,8 @@
   "REGISTER": {
     "TRY_WOOT": "Register an account",
     "TITLE": "Register",
-    "TERMS_ACCEPT": "By signing up, you agree to our <a href=\"https://www.chatwoot.com/terms\">T & C</a> and <a href=\"https://www.chatwoot.com/privacy-policy\">Privacy policy</a>",
+    "HAVE_AN_ACCOUNT": "Already have an account?",
+    "TERMS_ACCEPT": "By signing up, you agree to our <a href=\"%{termsURL}\">T & C</a> and <a href=\"%{privacyURL}\">Privacy policy</a>",
     "ACCOUNT_NAME": {
       "LABEL": "Account Name",
       "PLACEHOLDER": "Wayne Enterprises",
@@ -24,7 +25,6 @@
       "ERROR": "Password doesnot match"
     },
     "API": {
-      "SUCCESS_MESSAGE": "Registration Successfull",
       "ERROR_MESSAGE": "Could not connect to Woot Server, Please try again later"
     },
     "SUBMIT": "Submit",

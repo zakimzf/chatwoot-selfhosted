@@ -2,7 +2,7 @@
   "REGISTER": {
     "TRY_WOOT": "Đăng kí tài khoản",
     "TITLE": "Đăng kí",
-    "TERMS_ACCEPT": "Bằng cách đăng ký, bạn đồng ý với <a href=\"https://www.chatwoot.com/terms\">T & C</a> và <a href=\"https://www.chatwoot.com/privacy-policy\">Chính sách bảo mật</a>",
+    "TERMS_ACCEPT": "Bằng cách đăng ký, bạn đồng ý với <a href=\"%{termsURL}\">T & C</a> và <a href=\"%{privacyURL}\">Chính sách bảo mật</a>",
     "ACCOUNT_NAME": {
       "LABEL": "Tên Tài Khoản",
       "PLACEHOLDER": "Wayne Enterprises",

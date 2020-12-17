@@ -2,7 +2,7 @@
   "REGISTER": {
     "TRY_WOOT": "Luo tili",
     "TITLE": "Rekisteröidy",
-    "TERMS_ACCEPT": "Rekisteröitymällä hyväksyt <a href=\"https://www.chatwoot.com/terms\">käyttöehdot & säännöt</a> sekä <a href=\"https://www.chatwoot.com/privacy-policy\">yksityisyydensuojan</a>",
+    "TERMS_ACCEPT": "Rekisteröitymällä hyväksyt <a href=\"%{termsURL}\">käyttöehdot & säännöt</a> sekä <a href=\"%{privacyURL}\">yksityisyydensuojan</a>",
     "ACCOUNT_NAME": {
       "LABEL": "Tilin nimi",
       "PLACEHOLDER": "Wayne Enterprises",
