@@ -25,7 +25,7 @@
   "BUBBLE": {
     "LABEL": "تحدث الينا"
   },
-  "POWERED_BY": "مدعوم بواسطة تشات وت",
+  "POWERED_BY": "%{brandName} مدعوم بواسطة ",
   "EMAIL_PLACEHOLDER": "الرجاء إدخال بريدك الإلكتروني",
   "CHAT_PLACEHOLDER": "أكتب رسالتك"
 }
