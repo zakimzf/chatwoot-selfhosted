@@ -8,7 +8,7 @@
       />
       <h2 class="hero__title">
         {{
-          useInstallationName($t('LOGIN.TITLE'), globalConfig.installationName)
+          $t('LOGIN.TITLE', { installationName: globalConfig.installationName })
         }}
       </h2>
     </div>
