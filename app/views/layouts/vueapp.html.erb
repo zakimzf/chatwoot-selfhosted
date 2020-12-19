@@ -41,6 +41,24 @@
         selectedLocale: '<%= I18n.locale %>'
       }
       window.globalConfig = <%= raw @global_config.to_json %>
+
+      new SmartBanner({
+          daysHidden: 15,   // days to hide banner after close button is clicked (defaults to 15)
+          daysReminder: 90, // days to hide banner after "VIEW" button is clicked (defaults to 90)
+          appStoreLanguage: 'us', // language code for the App Store (defaults to user's browser language)
+          title: 'Chatwoot',
+          author: 'ThoughtWoot Inc',
+          button: 'VIEW',
+          store: {
+              ios: 'On the App Store',
+              android: 'In Google Play',
+          },
+          price: {
+              ios: 'FREE',
+              android: 'FREE',
+          }
+
+      });
     </script>
     <%= javascript_pack_tag 'application' %>
     <%= stylesheet_pack_tag 'application' %>
