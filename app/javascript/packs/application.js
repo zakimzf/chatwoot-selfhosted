@@ -15,6 +15,7 @@ import WootWizard from 'components/ui/Wizard';
 import { sync } from 'vuex-router-sync';
 import Vuelidate from 'vuelidate';
 import VTooltip from 'v-tooltip';
+import SmartBanner from 'smart-app-banner';
 import WootUiKit from '../dashboard/components';
 import App from '../dashboard/App';
 import i18n from '../dashboard/i18n';
@@ -41,6 +42,23 @@ Vue.use(hljs.vuePlugin);
 Vue.component('multiselect', Multiselect);
 Vue.component('woot-switch', WootSwitch);
 Vue.component('woot-wizard', WootWizard);
+
+new SmartBanner({
+  daysHidden: 15, // days to hide banner after close button is clicked (defaults to 15)
+  daysReminder: 90, // days to hide banner after "VIEW" button is clicked (defaults to 90)
+  appStoreLanguage: 'us', // language code for the App Store (defaults to user's browser language)
+  title: 'Chatwoot',
+  author: 'ThoughtWoot Inc',
+  button: 'VIEW',
+  store: {
+    ios: 'On the App Store',
+    android: 'In Google Play',
+  },
+  price: {
+    ios: 'FREE',
+    android: 'FREE',
+  },
+});
 
 const i18nConfig = new VueI18n({
   locale: 'en',

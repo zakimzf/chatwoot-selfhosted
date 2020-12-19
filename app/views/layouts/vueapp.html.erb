@@ -29,7 +29,6 @@
     <% end %>
     <link rel="icon" type="image/png" sizes="512x512" href="<%= @global_config['LOGO_THUMBNAIL'] %>">
     <%= csrf_meta_tags %>
-    <script src="node_modules/smart-app-banner/dist/smart-app-banner.js"></script>
     <script>
       window.chatwootConfig = {
         hostURL: '<%= ENV.fetch('FRONTEND_URL', '') %>',
@@ -43,23 +42,7 @@
       }
       window.globalConfig = <%= raw @global_config.to_json %>
 
-      new SmartBanner({
-          daysHidden: 15,   // days to hide banner after close button is clicked (defaults to 15)
-          daysReminder: 90, // days to hide banner after "VIEW" button is clicked (defaults to 90)
-          appStoreLanguage: 'us', // language code for the App Store (defaults to user's browser language)
-          title: 'Chatwoot',
-          author: 'ThoughtWoot Inc',
-          button: 'VIEW',
-          store: {
-              ios: 'On the App Store',
-              android: 'In Google Play',
-          },
-          price: {
-              ios: 'FREE',
-              android: 'FREE',
-          }
 
-      });
     </script>
     <%= javascript_pack_tag 'application' %>
     <%= stylesheet_pack_tag 'application' %>
