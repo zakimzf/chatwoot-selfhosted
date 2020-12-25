@@ -53,10 +53,7 @@ class Api::V1::Accounts::ContactsController < Api::V1::Accounts::BaseController
   private
 
   def resolved_contacts
-    @resolved_contacts ||= Current.account.contacts
-                                  .where.not(email: [nil, ''])
-                                  .or(Current.account.contacts.where.not(phone_number: [nil, '']))
-                                  .order('LOWER(name)')
+    @resolved_contacts ||= Current.account.contacts.where(resolved: true).order('LOWER(name)')
   end
 
   def set_current_page

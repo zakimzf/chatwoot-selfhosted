@@ -10,6 +10,7 @@
 #  name                  :string
 #  phone_number          :string
 #  pubsub_token          :string
+#  resolved              :boolean          default(FALSE)
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
 #  account_id            :integer          not null
@@ -40,6 +41,7 @@ class Contact < ApplicationRecord
   before_validation :prepare_email_attribute
   after_create_commit :dispatch_create_event, :ip_lookup
   after_update_commit :dispatch_update_event
+  after_commit :set_resolved
 
   def get_source_id(inbox_id)
     contact_inboxes.find_by!(inbox_id: inbox_id).source_id
@@ -86,5 +88,16 @@ class Contact < ApplicationRecord
 
   def dispatch_update_event
     Rails.configuration.dispatcher.dispatch(CONTACT_UPDATED, Time.zone.now, contact: self)
+  end
+
+  private
+
+  def set_resolved
+    return if resolved?
+
+    return unless email.present? || phone_number.present? || additional_attributes['screen_name'].present?
+
+    self.resolved = true
+    save
   end
 end

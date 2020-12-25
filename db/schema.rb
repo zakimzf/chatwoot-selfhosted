@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_27_135006) do
+ActiveRecord::Schema.define(version: 2020_12_25_093105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -208,6 +208,7 @@ ActiveRecord::Schema.define(version: 2020_10_27_135006) do
     t.jsonb "additional_attributes", default: {}
     t.string "identifier"
     t.jsonb "custom_attributes", default: {}
+    t.boolean "resolved", default: false
     t.index ["account_id"], name: "index_contacts_on_account_id"
     t.index ["email", "account_id"], name: "uniq_email_per_account_contact", unique: true
     t.index ["identifier", "account_id"], name: "uniq_identifier_per_account_contact", unique: true
@@ -513,6 +514,13 @@ ActiveRecord::Schema.define(version: 2020_10_27_135006) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "webhook_type", default: 0
     t.index ["account_id", "url"], name: "index_webhooks_on_account_id_and_url", unique: true
+  end
+
+  create_table "working_hour_groups", force: :cascade do |t|
+    t.string "name"
+    t.string "timezone"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "working_hours", force: :cascade do |t|
