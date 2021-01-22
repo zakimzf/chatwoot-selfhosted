@@ -14,6 +14,13 @@
         :on-keyenter="replaceText"
         :on-click="replaceText"
       />
+      <mentions-list
+        v-if="showMentionSuggestions"
+        v-on-clickaway="hideMentionsList"
+        data-dropdown-menu
+        :on-keyenter="replaceText"
+        :on-click="replaceText"
+      />
       <emoji-input
         v-if="showEmojiPicker"
         v-on-clickaway="hideEmojiPicker"
@@ -37,6 +44,7 @@
         class="input"
         :placeholder="messagePlaceHolder"
         :min-height="4"
+        :agents="agentList"
         @typing-off="onTypingOff"
         @typing-on="onTypingOn"
         @focus="onFocus"
@@ -73,12 +81,16 @@ import { mixin as clickaway } from 'vue-clickaway';
 
 import EmojiInput from 'shared/components/emoji/EmojiInput';
 import CannedResponse from './CannedResponse';
+import MentionsList from './MentionsList';
 import ResizableTextArea from 'shared/components/ResizableTextArea';
 import AttachmentPreview from 'dashboard/components/widgets/AttachmentsPreview';
 import ReplyTopPanel from 'dashboard/components/widgets/WootWriter/ReplyTopPanel';
 import ReplyBottomPanel from 'dashboard/components/widgets/WootWriter/ReplyBottomPanel';
 import { REPLY_EDITOR_MODES } from 'dashboard/components/widgets/WootWriter/constants';
-import WootMessageEditor from 'dashboard/components/widgets/WootWriter/Editor';
+
+import WootMessageEditor from '@chatwoot/prosemirror-schema';
+// import WootMessageEditor from 'dashboard/components/widgets/WootWriter/Editor';
+
 import {
   isEscape,
   isEnter,
@@ -96,6 +108,7 @@ export default {
     ReplyTopPanel,
     ReplyBottomPanel,
     WootMessageEditor,
+    MentionsList,
   },
   mixins: [clickaway, inboxMixin],
   props: {
@@ -110,6 +123,7 @@ export default {
       isFocused: false,
       showEmojiPicker: false,
       showCannedResponsesList: false,
+      showMentionSuggestions: false,
       attachedFiles: [],
       isUploading: false,
       replyType: REPLY_EDITOR_MODES.REPLY,
@@ -120,6 +134,7 @@ export default {
     ...mapGetters({
       currentChat: 'getSelectedChat',
       uiSettings: 'getUISettings',
+      agentList: 'agents/getAgents',
     }),
     enterToSendEnabled() {
       return !!this.uiSettings.enter_to_send_enabled;
@@ -230,16 +245,27 @@ export default {
       }
     },
     message(updatedMessage) {
+      console.log(updatedMessage);
       const isSlashCommand = updatedMessage[0] === '/';
+      const isAtCommand = updatedMessage[0] === '@';
       const hasNextWord = updatedMessage.includes(' ');
-      const isShortCodeActive = isSlashCommand && !hasNextWord;
-      if (isShortCodeActive) {
+      const isCannedCodeActive = isSlashCommand && !hasNextWord;
+      const isMentionCodeActive = isAtCommand && !hasNextWord;
+      if (isCannedCodeActive) {
         this.showCannedResponsesList = true;
         if (updatedMessage.length > 1) {
           const searchKey = updatedMessage.substr(1, updatedMessage.length);
           this.$store.dispatch('getCannedResponse', { searchKey });
         } else {
           this.$store.dispatch('getCannedResponse');
+        }
+      } else if (isMentionCodeActive) {
+        this.showMentionSuggestions = true;
+        if (updatedMessage.length > 1) {
+          // const searchKey = updatedMessage.substr(1, updatedMessage.length);
+          // this.$store.dispatch('getCannedResponse', { searchKey });
+        } else {
+          // this.$store.dispatch('getCannedResponse');
         }
       } else {
         this.showCannedResponsesList = false;
@@ -321,6 +347,9 @@ export default {
     },
     hideCannedResponse() {
       this.showCannedResponsesList = false;
+    },
+    hideMentionsList() {
+      this.showMentionSuggestions = false;
     },
     onTypingOn() {
       this.toggleTyping('on');
