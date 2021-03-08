@@ -13,6 +13,7 @@ const state = {
     isFetchingItem: false,
     isUpdating: false,
   },
+  order: [],
 };
 
 export default {
