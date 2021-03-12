@@ -13,7 +13,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import { setHeader } from 'widget/helpers/axios';
-import { IFrameHelper } from 'widget/helpers/utils';
+import { IFrameHelper, RNHelper } from 'widget/helpers/utils';
 
 import Router from './views/Router';
 import { getLocale } from './helpers/urlParamsHelper';
@@ -45,6 +45,9 @@ export default {
     isIFrame() {
       return IFrameHelper.isIFrame();
     },
+    isRNWebView() {
+      return RNHelper.isRNWebView();
+    },
   },
   mounted() {
     const { websiteToken, locale } = window.chatwootWebChannel;
@@ -59,15 +62,9 @@ export default {
       this.fetchAvailableAgents(websiteToken);
       this.setLocale(getLocale(window.location.search));
     }
-    // Pass cookie to react native widget
-    if (window.ReactNativeWebView) {
+    if (this.isRNWebView) {
       this.registerListeners();
-      window.ReactNativeWebView.postMessage(
-        JSON.stringify({
-          type: 'auth-token',
-          value: window.authToken,
-        })
-      );
+      this.sendRNWebViewLoadedEvent();
     }
     this.$store.dispatch('conversationAttributes/get');
     this.setWidgetColor(window.chatwootWebChannel);
@@ -89,7 +86,7 @@ export default {
     },
     setLocale(locale) {
       const { enabledLanguages } = window.chatwootWebChannel;
-      if (enabledLanguages.some(lang => lang.iso_639_1_code === locale)) {
+      if (enabledLanguages.some((lang) => lang.iso_639_1_code === locale)) {
         this.$root.$i18n.locale = locale;
       }
     },
@@ -140,7 +137,7 @@ export default {
     },
     registerListeners() {
       const { websiteToken } = window.chatwootWebChannel;
-      window.addEventListener('message', e => {
+      window.addEventListener('message', (e) => {
         if (!IFrameHelper.isAValidEvent(e)) {
           return;
         }
@@ -195,6 +192,9 @@ export default {
           channelConfig: window.chatwootWebChannel,
         },
       });
+    },
+    sendRNWebViewLoadedEvent() {
+      RNHelper.sendMessage({ type: 'auth-token', value: window.authToken });
     },
   },
 };
