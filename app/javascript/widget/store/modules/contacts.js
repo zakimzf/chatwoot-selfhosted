@@ -1,7 +1,31 @@
 import ContactsAPI from '../../api/contacts';
 import { refreshActionCableConnector } from '../../helpers/actionCable';
 
+const state = {
+  currentUser: {},
+};
+
+const SET_CURRENT_USER = 'SET_CURRENT_USER';
+const SET_CONTACTS_UI_FLAG = 'SET_CONTACTS_UI_FLAG';
+
+export const getters = {
+  getCurrentUser(_state) {
+    return _state.currentUser;
+  },
+  getUIFlags(_state) {
+    return _state.uiFlags;
+  },
+};
+
 export const actions = {
+  get: async ({ commit }) => {
+    try {
+      const { data } = await ContactsAPI.get();
+      commit(SET_CURRENT_USER, data);
+    } catch (error) {
+      // Ignore error
+    }
+  },
   update: async ({ dispatch }, { identifier, user: userObject }) => {
     try {
       const user = {
@@ -14,6 +38,7 @@ export const actions = {
         data: { pubsub_token: pubsubToken },
       } = await ContactsAPI.update(identifier, user);
 
+      dispatch('get');
       if (userObject.identifier_hash) {
         dispatch('conversation/clearConversations', {}, { root: true });
         dispatch('conversation/fetchOldConversations', {}, { root: true });
@@ -33,10 +58,23 @@ export const actions = {
   },
 };
 
+export const mutations = {
+  [SET_CURRENT_USER]($state, user) {
+    const { currentUser } = $state;
+    $state.currentUser = { ...currentUser, ...user };
+  },
+  [SET_CONTACTS_UI_FLAG](_state, data) {
+    _state.uiFlags = {
+      ..._state.uiFlags,
+      ...data,
+    };
+  },
+};
+
 export default {
   namespaced: true,
-  state: {},
-  getters: {},
+  state,
+  getters,
   actions,
-  mutations: {},
+  mutations,
 };
